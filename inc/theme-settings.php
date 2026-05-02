@@ -8,12 +8,12 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-if ( ! function_exists( 'jovadd-lc_setup_theme_default_settings' ) ) {
+if ( ! function_exists( 'jovadd_lc_setup_theme_default_settings' ) ) {
 	/**
 	 * Store default theme settings in database.
 	 */
-	function jovadd-lc_setup_theme_default_settings() {
-		$defaults = jovadd-lc_get_theme_default_settings();
+	function jovadd_lc_setup_theme_default_settings() {
+		$defaults = jovadd_lc_get_theme_default_settings();
 		$settings = get_theme_mods();
 		foreach ( $defaults as $setting_id => $default_value ) {
 			// Check if setting is set, if not set it to its default value.
@@ -24,17 +24,17 @@ if ( ! function_exists( 'jovadd-lc_setup_theme_default_settings' ) ) {
 	}
 }
 
-if ( ! function_exists( 'jovadd-lc_get_theme_default_settings' ) ) {
+if ( ! function_exists( 'jovadd_lc_get_theme_default_settings' ) ) {
 	/**
 	 * Retrieve default theme settings.
 	 *
 	 * @return array
 	 */
-	function jovadd-lc_get_theme_default_settings() {
+	function jovadd_lc_get_theme_default_settings() {
 		$defaults = array(
-			'jovadd-lc_posts_index_style' => 'default',   // Latest blog posts style.
-			'jovadd-lc_sidebar_position'  => 'right',     // Sidebar position.
-			'jovadd-lc_container_type'    => 'container', // Container width.
+			'jovadd_lc_posts_index_style' => 'default',   // Latest blog posts style.
+			'jovadd_lc_sidebar_position'  => 'right',     // Sidebar position.
+			'jovadd_lc_container_type'    => 'container', // Container width.
 		);
 
 		/**
@@ -42,7 +42,7 @@ if ( ! function_exists( 'jovadd-lc_get_theme_default_settings' ) ) {
 		 *
 		 * @param array $defaults Array of default theme settings.
 		 */
-		return apply_filters( 'jovadd-lc_theme_default_settings', $defaults );
+		return apply_filters( 'jovadd_lc_theme_default_settings', $defaults );
 	}
 }
 

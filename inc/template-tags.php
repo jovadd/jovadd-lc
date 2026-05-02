@@ -10,9 +10,9 @@ defined( 'ABSPATH' ) || exit;
 
 
 //FOOTER TEXT CUSTOMIZATION
-if(!function_exists('jovadd-lc_site_info')):
-	function jovadd-lc_site_info(){
-		$footer_text_setting = get_theme_mod("jovadd-lc_footer_text");
+if(!function_exists('jovadd_lc_site_info')):
+	function jovadd_lc_site_info(){
+		$footer_text_setting = get_theme_mod("jovadd_lc_footer_text");
 		?>
 			<div class="site-info small">
 				<?php if (strlen($footer_text_setting) > 0) echo $footer_text_setting; ?>
@@ -24,8 +24,8 @@ if(!function_exists('jovadd-lc_site_info')):
 endif;
 
 ///SHARING BUTTONS ////
-if(!function_exists('jovadd-lc_the_sharing_buttons')):
-	function jovadd-lc_the_sharing_buttons(){
+if(!function_exists('jovadd_lc_the_sharing_buttons')):
+	function jovadd_lc_the_sharing_buttons(){
 
 		global $post;
 		$url_to_share=esc_attr(get_permalink($post->ID));

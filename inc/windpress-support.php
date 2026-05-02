@@ -4,7 +4,7 @@
 // https://wind.press/
 // A great solution to add TailWind CSS
 
-function pico_scanner_jovadd-lc_provider(): array
+function pico_scanner_jovadd_lc_provider(): array
 {
     // Any files with this extension will be scanned
     $file_extensions = [
@@ -64,13 +64,13 @@ function pico_scanner_jovadd-lc_provider(): array
  * @param array $providers The collection of providers that will be used to scan the design payload
  * @return array
  */
-function pico_register_jovadd-lc_provider(array $providers): array
+function pico_register_jovadd_lc_provider(array $providers): array
 {
     $providers[] = [
         'id' => 'jovadd-lc',
         'name' => 'Jovadd LC Theme',
         'description' => 'Scans the Jovadd LC theme & child theme',
-        'callback' => 'pico_scanner_jovadd-lc_provider', // The function that will be called to get the data
+        'callback' => 'pico_scanner_jovadd_lc_provider', // The function that will be called to get the data
         'enabled' => \WindPress\WindPress\Utils\Config::get(sprintf(
             'integration.%s.enabled',
             'jovadd-lc' // The id of this custom provider
@@ -80,4 +80,4 @@ function pico_register_jovadd-lc_provider(array $providers): array
     return $providers;
 }
 
-add_filter('f!windpress/core/cache:compile.providers', 'pico_register_jovadd-lc_provider');
+add_filter('f!windpress/core/cache:compile.providers', 'pico_register_jovadd_lc_provider');

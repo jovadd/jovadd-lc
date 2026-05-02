@@ -25,7 +25,7 @@ if (is_active_sidebar( 'footerfull' )): ?>
 
                     <div class="site-info">
 
-                        <?php jovadd-lc_site_info(); ?>
+                        <?php jovadd_lc_site_info(); ?>
 
                     </div><!-- .site-info -->
 

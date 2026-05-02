@@ -9,7 +9,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-function jovadd-lc_cleanup() {
+function jovadd_lc_cleanup() {
 
     /* CLEANUP THE HEAD */
     remove_action('wp_head', 'wp_generator');
@@ -29,8 +29,8 @@ function jovadd-lc_cleanup() {
     remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
     remove_filter( 'comment_text_rss', 'wp_staticize_emoji' ); 
     remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-    add_filter( 'tiny_mce_plugins', 'jovadd-lc_disable_emojis_tinymce' );
-    add_filter( 'wp_resource_hints', 'jovadd-lc_disable_emojis_remove_dns_prefetch', 10, 2 );
+    add_filter( 'tiny_mce_plugins', 'jovadd_lc_disable_emojis_tinymce' );
+    add_filter( 'wp_resource_hints', 'jovadd_lc_disable_emojis_remove_dns_prefetch', 10, 2 );
     add_filter('emoji_svg_url', '__return_false');
 
     //REMOVE REST API Link – api.w.org
@@ -41,13 +41,13 @@ function jovadd-lc_cleanup() {
     if(!is_user_logged_in()) remove_action( 'rest_api_init', 'wp_oembed_register_route' );
 
 }
-add_action( 'init', 'jovadd-lc_cleanup' );
+add_action( 'init', 'jovadd_lc_cleanup' );
 
 //more emoji 
-function jovadd-lc_disable_emojis_tinymce( $plugins ) {    if ( is_array( $plugins ) ) {    return array_diff( $plugins, array( 'wpemoji' ) );    } else {    return array();    }}
+function jovadd_lc_disable_emojis_tinymce( $plugins ) {    if ( is_array( $plugins ) ) {    return array_diff( $plugins, array( 'wpemoji' ) );    } else {    return array();    }}
 
 //more emoji 2
-function jovadd-lc_disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
+function jovadd_lc_disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
     if ( 'dns-prefetch' == $relation_type ) {
     $emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
     $urls = array_diff( $urls, array( $emoji_svg_url ) );
@@ -71,15 +71,15 @@ function disable_self_pingbacks(&$links) {
 // Show less info to users on failed login for security.
 //(Will not let a valid username be known.)
 
-function jovadd-lc_show_less_login_info() { 
+function jovadd_lc_show_less_login_info() { 
     return "<strong>ERROR</strong>: Stop guessing!"; }
-add_filter( 'login_errors', 'jovadd-lc_show_less_login_info' );
+add_filter( 'login_errors', 'jovadd_lc_show_less_login_info' );
 
  
 // Do not generate and display WordPress version
  
-function jovadd-lc_no_generator()  {     return ''; }
-add_filter( 'the_generator', 'jovadd-lc_no_generator' );
+function jovadd_lc_no_generator()  {     return ''; }
+add_filter( 'the_generator', 'jovadd_lc_no_generator' );
 
 
 
@@ -104,9 +104,9 @@ function my_css_attributes_filter($var) {  return is_array($var) ? array() : '';
 // read about it: https://kinsta.com/knowledgebase/disable-embeds-wordpress/#disable-embeds-code
 //does not block video embed
 add_action( 'wp_footer',function (){  wp_deregister_script( 'wp-embed' ); });
-add_action( 'init', 'jovadd-lc_disable_embeds_code_init', 9999 );
+add_action( 'init', 'jovadd_lc_disable_embeds_code_init', 9999 );
 
-function jovadd-lc_disable_embeds_code_init() {
+function jovadd_lc_disable_embeds_code_init() {
 	
 	// Turn off oEmbed auto discovery.
 	add_filter( 'embed_oembed_discover', '__return_false' );
@@ -119,18 +119,18 @@ function jovadd-lc_disable_embeds_code_init() {
 	
 	// Remove oEmbed-specific JavaScript from the front-end and back-end.
 	remove_action( 'wp_head', 'wp_oembed_add_host_js' );
-	add_filter( 'tiny_mce_plugins', 'jovadd-lc_disable_embeds_tiny_mce_plugin' );
+	add_filter( 'tiny_mce_plugins', 'jovadd_lc_disable_embeds_tiny_mce_plugin' );
 	
 	// Remove all embeds rewrite rules.
-	add_filter( 'rewrite_rules_array', 'jovadd-lc_disable_embeds_rewrites' );
+	add_filter( 'rewrite_rules_array', 'jovadd_lc_disable_embeds_rewrites' );
 	
 	// Remove filter of the oEmbed result before any HTTP requests are made.
 	remove_filter( 'pre_oembed_result', 'wp_filter_pre_oembed_result', 10 );
 }
 
-function jovadd-lc_disable_embeds_tiny_mce_plugin($plugins) { return array_diff($plugins, array('wpembed')); }
+function jovadd_lc_disable_embeds_tiny_mce_plugin($plugins) { return array_diff($plugins, array('wpembed')); }
 
-function jovadd-lc_disable_embeds_rewrites($rules) {
+function jovadd_lc_disable_embeds_rewrites($rules) {
     foreach($rules as $rule => $rewrite) {        if(false !== strpos($rewrite, 'embed=true')) { unset($rules[$rule]); }    }
     return $rules;
 }
@@ -142,9 +142,9 @@ function jovadd-lc_disable_embeds_rewrites($rules) {
 // REMOVE DEFAULT WP INLINE STYLE:  <style id='global-styles-inline-css'> and SVG filters on body open
 // https://github.com/WordPress/gutenberg/issues/36834
 
-function jovadd-lc_wp_remove_global_css() {
+function jovadd_lc_wp_remove_global_css() {
    remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
    remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
 }
 
-if (get_theme_mod("disable_gutenberg") )add_action( 'init', 'jovadd-lc_wp_remove_global_css' );
+if (get_theme_mod("disable_gutenberg") )add_action( 'init', 'jovadd_lc_wp_remove_global_css' );

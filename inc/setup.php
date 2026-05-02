@@ -13,9 +13,9 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
-add_action( 'after_setup_theme', 'jovadd-lc_setup' );
+add_action( 'after_setup_theme', 'jovadd_lc_setup' );
 
-if ( ! function_exists( 'jovadd-lc_setup' ) ) {
+if ( ! function_exists( 'jovadd_lc_setup' ) ) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -23,7 +23,7 @@ if ( ! function_exists( 'jovadd-lc_setup' ) ) {
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function jovadd-lc_setup() {
+	function jovadd_lc_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -98,7 +98,7 @@ if ( ! function_exists( 'jovadd-lc_setup' ) ) {
 		add_theme_support(
 			'custom-background',
 			apply_filters(
-				'jovadd-lc_custom_background_args',
+				'jovadd_lc_custom_background_args',
 				array(
 					'default-color' => 'ffffff',
 					'default-image' => '',
@@ -114,7 +114,7 @@ if ( ! function_exists( 'jovadd-lc_setup' ) ) {
 		add_theme_support( 'responsive-embeds' );
 
 		// Check and setup theme default settings.
-		jovadd-lc_setup_theme_default_settings();
+		jovadd_lc_setup_theme_default_settings();
 
 	}
 }
@@ -125,9 +125,9 @@ add_filter("excerpt_length",function($in){
 
 
 
-add_filter( 'excerpt_more', 'jovadd-lc_custom_excerpt_more' );
+add_filter( 'excerpt_more', 'jovadd_lc_custom_excerpt_more' );
 
-if ( ! function_exists( 'jovadd-lc_custom_excerpt_more' ) ) {
+if ( ! function_exists( 'jovadd_lc_custom_excerpt_more' ) ) {
 	/**
 	 * Removes the ... from the excerpt read more link
 	 *
@@ -135,7 +135,7 @@ if ( ! function_exists( 'jovadd-lc_custom_excerpt_more' ) ) {
 	 *
 	 * @return string
 	 */
-	function jovadd-lc_custom_excerpt_more( $more ) {
+	function jovadd_lc_custom_excerpt_more( $more ) {
 		if ( ! is_admin()  OR ( isset($_POST['action']) && $_POST['action'] == 'lc_process_dynamic_templating_shortcode') ) {
 			$more = '';
 		}
@@ -143,9 +143,9 @@ if ( ! function_exists( 'jovadd-lc_custom_excerpt_more' ) ) {
 	}
 }
 
-add_filter( 'wp_trim_excerpt', 'jovadd-lc_all_excerpts_get_more_link' );
+add_filter( 'wp_trim_excerpt', 'jovadd_lc_all_excerpts_get_more_link' );
 
-if ( ! function_exists( 'jovadd-lc_all_excerpts_get_more_link' ) ) {
+if ( ! function_exists( 'jovadd_lc_all_excerpts_get_more_link' ) ) {
 	/**
 	 * Adds a custom read more link to all excerpts, manually or automatically generated
 	 *
@@ -153,7 +153,7 @@ if ( ! function_exists( 'jovadd-lc_all_excerpts_get_more_link' ) ) {
 	 *
 	 * @return string
 	 */
-	function jovadd-lc_all_excerpts_get_more_link( $post_excerpt ) {
+	function jovadd_lc_all_excerpts_get_more_link( $post_excerpt ) {
         global  $lc_rendered_dynamic_template_id;
         
         //exclude LC dynamic templates
@@ -194,8 +194,8 @@ function bootstrap_wrap_oembed( $html ){
   add_filter( 'embed_oembed_html','bootstrap_wrap_oembed',10,1);
 
 // Make the core [video] shortcode responsive with Bootstrap 5.3 ratio
-add_filter( 'wp_video_shortcode', 'jovadd-lc_bs_ratio_for_wp_video', 10, 5 );
-function jovadd-lc_bs_ratio_for_wp_video( $output, $atts, $video, $post_id, $library ) {
+add_filter( 'wp_video_shortcode', 'jovadd_lc_bs_ratio_for_wp_video', 10, 5 );
+function jovadd_lc_bs_ratio_for_wp_video( $output, $atts, $video, $post_id, $library ) {
 
     // 1) Read width/height from shortcode attributes (fallback to 16:9)
     $w = isset( $atts['width'] )  ? (int) $atts['width']  : 16;
@@ -227,4 +227,4 @@ add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
 
 
 //ENABLE SOURCEMAP
-add_filter('jovadd-lc_enable_sourcemap_in_css', '__return_true');
+add_filter('jovadd_lc_enable_sourcemap_in_css', '__return_true');

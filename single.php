@@ -76,7 +76,7 @@ if (have_posts()):
                 
                 the_content();
                 
-                if( get_theme_mod("enable_sharing_buttons")) jovadd-lc_the_sharing_buttons();
+                if( get_theme_mod("enable_sharing_buttons")) jovadd_lc_the_sharing_buttons();
                 
                 edit_post_link( __( 'Edit this post', 'jovadd-lc' ), '<p class="text-end">', '</p>' );
                 

@@ -99,8 +99,8 @@ add_action( 'wp_footer', function  () {
 
 					//build the request to send via AJAX POST for saving css
 					const formdata = new FormData();
-					formdata.append("nonce", "<?php echo wp_create_nonce("jovadd-lc_save_css_bundle") ?>");
-					formdata.append("action", "jovadd-lc_save_css_bundle");
+					formdata.append("nonce", "<?php echo wp_create_nonce("jovadd_lc_save_css_bundle") ?>");
+					formdata.append("action", "jovadd_lc_save_css_bundle");
 					formdata.append("css", compiled.css);
 					formdata.append("sourceMap", compiled.sourceMap ? JSON.stringify(compiled.sourceMap) : "" );
 					fetch("<?php echo admin_url( 'admin-ajax.php' ) ?>", {
@@ -204,13 +204,13 @@ function ps_get_main_sass(){
 }
 
 //HANDLE AJAX ACTION FOR SAVING CSS BUNDLE
-add_action("wp_ajax_jovadd-lc_save_css_bundle", function (){
+add_action("wp_ajax_jovadd_lc_save_css_bundle", function (){
     
 	//exit if unlogged or non admin
 	if(!is_user_logged_in() OR !current_user_can("administrator")  ) return; 
 	
     //check nonce
-    check_ajax_referer('jovadd-lc_save_css_bundle', 'nonce');
+    check_ajax_referer('jovadd_lc_save_css_bundle', 'nonce');
 
 	//ADD SOME COMMENT
 	$compiled_css = stripslashes($_POST['css']);
@@ -218,7 +218,7 @@ add_action("wp_ajax_jovadd-lc_save_css_bundle", function (){
 	// sourcemap
 	if (isset($_POST['sourceMap']) AND $_POST['sourceMap']!="") {
 		// Enable source map reference in the CSS file
-		if (apply_filters('jovadd-lc_enable_sourcemap_in_css', false)) {
+		if (apply_filters('jovadd_lc_enable_sourcemap_in_css', false)) {
 			$compiled_css .= "\n/*# sourceMappingURL=bundle.css.map */";
 		}
 	}
@@ -231,13 +231,13 @@ add_action("wp_ajax_jovadd-lc_save_css_bundle", function (){
 	}
 
 	//SAVE THE FILE
-	$saving_operation = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . jovadd-lc_get_css_optional_subfolder_name() . jovadd-lc_get_complete_css_filename(), $compiled_css, FS_CHMOD_FILE ); // , 0644 ?
+	$saving_operation = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . jovadd_lc_get_css_optional_subfolder_name() . jovadd_lc_get_complete_css_filename(), $compiled_css, FS_CHMOD_FILE ); // , 0644 ?
 	
 	if ($saving_operation) { // IF UPLOAD WAS SUCCESSFUL 
 		// also save source map if present on the payload
 		if (isset($_POST['sourceMap']) AND $_POST['sourceMap']!="") {
 			$source_map = stripslashes($_POST['sourceMap']);
-			$saving_operation_map = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . jovadd-lc_get_css_optional_subfolder_name() . jovadd-lc_get_complete_css_filename() . '.map', $source_map, FS_CHMOD_FILE );
+			$saving_operation_map = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . jovadd_lc_get_css_optional_subfolder_name() . jovadd_lc_get_complete_css_filename() . '.map', $source_map, FS_CHMOD_FILE );
 		}
 
 		//STORE CSS BUNDLE VERSION NUMBER

@@ -101,10 +101,10 @@ function pico_get_parent_theme_version(){
 }
 
 //ADD THEME OPTIONS PAGE
-function add_jovadd-lc_theme_page() {
+function add_jovadd_lc_theme_page() {
     add_theme_page( 'Jovadd LC Theme Options Page', 'Jovadd LC Options', 'edit_theme_options', 'jovadd-lc-theme-options', 'theme_option_page' );
 }
-add_action( 'admin_menu', 'add_jovadd-lc_theme_page' );
+add_action( 'admin_menu', 'add_jovadd_lc_theme_page' );
  
 function theme_option_page() {
 	
@@ -168,7 +168,7 @@ function theme_option_page() {
                 and <b>set your own project colors</b>, typography and graphical options.<br>
                 Hit "<b>Publish</b>" and jovadd-lc will recompile the Bootstrap SCSS code "on the fly" (and optionally include YOUR additional CSS / SCSS files). </p>
                 <p> Leverage the power of SASS in WordPress with ease. Compile SASS in the browser, live, just by clicking the SASS logo in the WordPress admin bar.</p> 
-                <p>A <b>single, minified <a href="<?php echo jovadd-lc_get_css_url() ?>" target="_blank">CSS file</a></b> is generated and served. </p>
+                <p>A <b>single, minified <a href="<?php echo jovadd_lc_get_css_url() ?>" target="_blank">CSS file</a></b> is generated and served. </p>
                 <p><small>If you're not a fan of the Customizer, you can alternatively edit the <b> sass/_theme-variables.scss </b> file too, inside  your child theme folder. 
 				Then launch the SASS compiler from the topbar while visiting the site.</small></p>
                 <p>Learn more at  

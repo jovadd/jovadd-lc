@@ -27,7 +27,7 @@
     "SCSSvar_input-btn-padding-x": "1.5rem",
     "SCSSvar_input-btn-font-size": "1rem",
     "picostrap_fonts_header_code": "",
-    "jovadd-lc_fonts_header_code_disable": true,
+    "jovadd_lc_fonts_header_code_disable": true,
     "css_bundle_version_number": 1,
     "enable_back_to_top": false
 }

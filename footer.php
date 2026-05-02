@@ -1,8 +1,8 @@
 </main>
 	<?php 
 
-    // Custom filter to check if footer elements should be displayed. To disable, use: add_filter('jovadd-lc_enable_footer_elements', '__return_false');
-    if (apply_filters('jovadd-lc_enable_footer_elements', true)):
+    // Custom filter to check if footer elements should be displayed. To disable, use: add_filter('jovadd_lc_enable_footer_elements', '__return_false');
+    if (apply_filters('jovadd_lc_enable_footer_elements', true)):
     
         //check if LC option is set to "Handle Footer"   
         if (!function_exists("lc_custom_footer")) {

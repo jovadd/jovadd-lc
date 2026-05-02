@@ -8,7 +8,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-if ( ! function_exists( 'jovadd-lc_pagination' ) ) {
+if ( ! function_exists( 'jovadd_lc_pagination' ) ) {
 	/**
 	 * Displays the navigation to next/previous set of posts.
 	 *
@@ -39,7 +39,7 @@ if ( ! function_exists( 'jovadd-lc_pagination' ) ) {
 	 * }
 	 * @param string       $class           (Optional) Classes to be added to the <ul> element. Default 'pagination'.
 	 */
-	function jovadd-lc_pagination( $args = array(), $class = 'pagination pagination-lg' ) {
+	function jovadd_lc_pagination( $args = array(), $class = 'pagination pagination-lg' ) {
 
 		if ( ! isset( $args['total'] ) && $GLOBALS['wp_query']->max_num_pages <= 1 ) {
 			return;

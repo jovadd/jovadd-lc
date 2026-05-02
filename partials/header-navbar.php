@@ -6,8 +6,8 @@
     </a>
 
 
-    <nav data-bs-theme="<?php echo get_theme_mod('jovadd-lc_header_navbar_color_scheme_attr', 'dark') ?>"
-        class="navbar <?php echo get_theme_mod('jovadd-lc_header_navbar_expand', 'navbar-expand-lg'); ?> <?php echo get_theme_mod('jovadd-lc_header_navbar_position') . " " . get_theme_mod('jovadd-lc_header_navbar_color_choice', 'bg-dark'); ?>"
+    <nav data-bs-theme="<?php echo get_theme_mod('jovadd_lc_header_navbar_color_scheme_attr', 'dark') ?>"
+        class="navbar <?php echo get_theme_mod('jovadd_lc_header_navbar_expand', 'navbar-expand-lg'); ?> <?php echo get_theme_mod('jovadd_lc_header_navbar_position') . " " . get_theme_mod('jovadd_lc_header_navbar_color_choice', 'bg-dark'); ?>"
         aria-label="Main Navigation">
         <div class="container">
             <div id="logo-tagline-wrap">

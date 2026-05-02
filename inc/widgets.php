@@ -14,9 +14,9 @@ defined( 'ABSPATH' ) || exit;
  *
  * @link https://developer.wordpress.org/reference/hooks/dynamic_sidebar_params/
  */
-add_filter( 'dynamic_sidebar_params', 'jovadd-lc_widget_classes' );
+add_filter( 'dynamic_sidebar_params', 'jovadd_lc_widget_classes' );
 
-if ( ! function_exists( 'jovadd-lc_widget_classes' ) ) {
+if ( ! function_exists( 'jovadd_lc_widget_classes' ) ) {
 
 	/**
 	 * Count number of visible widgets in a sidebar and add classes to widgets accordingly,
@@ -49,7 +49,7 @@ if ( ! function_exists( 'jovadd-lc_widget_classes' ) ) {
 	 * }
 	 * @return array $params
 	 */
-	function jovadd-lc_widget_classes( $params ) {
+	function jovadd_lc_widget_classes( $params ) {
 
 		global $sidebars_widgets;
 
@@ -71,15 +71,15 @@ if ( ! function_exists( 'jovadd-lc_widget_classes' ) ) {
 		return $params;
 
 	}
-} // End of if function_exists( 'jovadd-lc_widget_classes' ).
+} // End of if function_exists( 'jovadd_lc_widget_classes' ).
 
-add_action( 'widgets_init', 'jovadd-lc_widgets_init' );
+add_action( 'widgets_init', 'jovadd_lc_widgets_init' );
 
-if ( ! function_exists( 'jovadd-lc_widgets_init' ) ) {
+if ( ! function_exists( 'jovadd_lc_widgets_init' ) ) {
 	/**
 	 * Initializes themes widgets.
 	 */
-	function jovadd-lc_widgets_init() {
+	function jovadd_lc_widgets_init() {
 		/*
 		register_sidebar(
 			array(
@@ -182,4 +182,4 @@ if ( ! function_exists( 'jovadd-lc_widgets_init' ) ) {
 
 
 	}
-} // End of function_exists( 'jovadd-lc_widgets_init' ).
+} // End of function_exists( 'jovadd_lc_widgets_init' ).

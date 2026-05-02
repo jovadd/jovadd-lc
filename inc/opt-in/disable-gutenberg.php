@@ -20,8 +20,8 @@ function pico_disable_gutenberg($current_status, $post_type){
 
 
 /// REMOVE GUTENBERG BLOCKS CSS
-add_action( 'wp_print_styles', 'jovadd-lc_deregister_gstyles', 100 );
-function jovadd-lc_deregister_gstyles() {
+add_action( 'wp_print_styles', 'jovadd_lc_deregister_gstyles', 100 );
+function jovadd_lc_deregister_gstyles() {
 
     //if user wants to use Gutenberg along with LC editor, exit
     if (function_exists('lc_plugin_option_is_set') && lc_plugin_option_is_set('gtblocks')) return;

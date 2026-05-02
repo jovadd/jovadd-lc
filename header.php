@@ -20,8 +20,8 @@ defined('ABSPATH') || exit;
 	<?php wp_body_open(); ?>
 
 	<?php 
-    // Custom filter to check if header elements should be displayed. To disable, use: add_filter('jovadd-lc_enable_header_elements', '__return_false');
-    if (apply_filters('jovadd-lc_enable_header_elements', true)):
+    // Custom filter to check if header elements should be displayed. To disable, use: add_filter('jovadd_lc_enable_header_elements', '__return_false');
+    if (apply_filters('jovadd_lc_enable_header_elements', true)):
 
         //check if LC option is set to "Handle Header"    
         if (!function_exists('lc_custom_header')) {
