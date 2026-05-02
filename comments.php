@@ -5,7 +5,7 @@
  * The area of the page that contains both current comments
  * and the comment form.
  *
- * @package PicoStrap
+ * @package Jovadd LC
  */
 
 // Exit if accessed directly.
