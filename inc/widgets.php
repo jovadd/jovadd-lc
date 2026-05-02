@@ -2,7 +2,7 @@
 /**
  * Declaring widgets
  *
- * @package picostrap5
+ * @package jovadd-lc
  */
 
 // Exit if accessed directly.
@@ -14,9 +14,9 @@ defined( 'ABSPATH' ) || exit;
  *
  * @link https://developer.wordpress.org/reference/hooks/dynamic_sidebar_params/
  */
-add_filter( 'dynamic_sidebar_params', 'picostrap_widget_classes' );
+add_filter( 'dynamic_sidebar_params', 'jovadd-lc_widget_classes' );
 
-if ( ! function_exists( 'picostrap_widget_classes' ) ) {
+if ( ! function_exists( 'jovadd-lc_widget_classes' ) ) {
 
 	/**
 	 * Count number of visible widgets in a sidebar and add classes to widgets accordingly,
@@ -49,7 +49,7 @@ if ( ! function_exists( 'picostrap_widget_classes' ) ) {
 	 * }
 	 * @return array $params
 	 */
-	function picostrap_widget_classes( $params ) {
+	function jovadd-lc_widget_classes( $params ) {
 
 		global $sidebars_widgets;
 
@@ -71,21 +71,21 @@ if ( ! function_exists( 'picostrap_widget_classes' ) ) {
 		return $params;
 
 	}
-} // End of if function_exists( 'picostrap_widget_classes' ).
+} // End of if function_exists( 'jovadd-lc_widget_classes' ).
 
-add_action( 'widgets_init', 'picostrap_widgets_init' );
+add_action( 'widgets_init', 'jovadd-lc_widgets_init' );
 
-if ( ! function_exists( 'picostrap_widgets_init' ) ) {
+if ( ! function_exists( 'jovadd-lc_widgets_init' ) ) {
 	/**
 	 * Initializes themes widgets.
 	 */
-	function picostrap_widgets_init() {
+	function jovadd-lc_widgets_init() {
 		/*
 		register_sidebar(
 			array(
-				'name'          => __( 'Right Sidebar', 'picostrap5' ),
+				'name'          => __( 'Right Sidebar', 'jovadd-lc' ),
 				'id'            => 'right-sidebar',
-				'description'   => __( 'Right sidebar widget area', 'picostrap5' ),
+				'description'   => __( 'Right sidebar widget area', 'jovadd-lc' ),
 				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</aside>',
 				'before_title'  => '<h3 class="widget-title">',
@@ -95,9 +95,9 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 
 		register_sidebar(
 			array(
-				'name'          => __( 'Left Sidebar', 'picostrap5' ),
+				'name'          => __( 'Left Sidebar', 'jovadd-lc' ),
 				'id'            => 'left-sidebar',
-				'description'   => __( 'Left sidebar widget area', 'picostrap5' ),
+				'description'   => __( 'Left sidebar widget area', 'jovadd-lc' ),
 				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</aside>',
 				'before_title'  => '<h3 class="widget-title">',
@@ -107,9 +107,9 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 
 		register_sidebar(
 			array(
-				'name'          => __( 'Hero Slider', 'picostrap5' ),
+				'name'          => __( 'Hero Slider', 'jovadd-lc' ),
 				'id'            => 'hero',
-				'description'   => __( 'Hero slider area. Place two or more widgets here and they will slide!', 'picostrap5' ),
+				'description'   => __( 'Hero slider area. Place two or more widgets here and they will slide!', 'jovadd-lc' ),
 				'before_widget' => '<div class="carousel-item">',
 				'after_widget'  => '</div>',
 				'before_title'  => '',
@@ -119,9 +119,9 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 
 		register_sidebar(
 			array(
-				'name'          => __( 'Hero Canvas', 'picostrap5' ),
+				'name'          => __( 'Hero Canvas', 'jovadd-lc' ),
 				'id'            => 'herocanvas',
-				'description'   => __( 'Full size canvas hero area for Bootstrap and other custom HTML markup', 'picostrap5' ),
+				'description'   => __( 'Full size canvas hero area for Bootstrap and other custom HTML markup', 'jovadd-lc' ),
 				'before_widget' => '',
 				'after_widget'  => '',
 				'before_title'  => '',
@@ -131,9 +131,9 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 
 		register_sidebar(
 			array(
-				'name'          => __( 'Top Full', 'picostrap5' ),
+				'name'          => __( 'Top Full', 'jovadd-lc' ),
 				'id'            => 'statichero',
-				'description'   => __( 'Full top widget with dynamic grid', 'picostrap5' ),
+				'description'   => __( 'Full top widget with dynamic grid', 'jovadd-lc' ),
 				'before_widget' => '<div id="%1$s" class="static-hero-widget %2$s dynamic-classes">',
 				'after_widget'  => '</div><!-- .static-hero-widget -->',
 				'before_title'  => '<h3 class="widget-title">',
@@ -144,9 +144,9 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 
 		register_sidebar(
 			array(
-				'name'          => __( 'Main Sidebar', 'picostrap5' ),
+				'name'          => __( 'Main Sidebar', 'jovadd-lc' ),
 				'id'            => 'main-sidebar',
-				'description'   => __( 'Main sidebar widget area', 'picostrap5' ),
+				'description'   => __( 'Main sidebar widget area', 'jovadd-lc' ),
 				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</aside>',
 				'before_title'  => '<h3 class="widget-title">',
@@ -157,9 +157,9 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 		
 		register_sidebar(
 			array(
-				'name'          => __( 'Footer Full', 'picostrap5' ),
+				'name'          => __( 'Footer Full', 'jovadd-lc' ),
 				'id'            => 'footerfull',
-				'description'   => __( 'Full sized footer widget with dynamic grid', 'picostrap5' ),
+				'description'   => __( 'Full sized footer widget with dynamic grid', 'jovadd-lc' ),
 				'before_widget' => '<div id="%1$s" class="footer-widget %2$s dynamic-classes">',
 				'after_widget'  => '</div><!-- .footer-widget -->',
 				'before_title'  => '<h3 class="widget-title">',
@@ -170,9 +170,9 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 		if ( class_exists( 'woocommerce' ) ) 
 		register_sidebar(
 			array(
-				'name'          => __( 'WooCommerce Shop Sidebar', 'picostrap5' ),
+				'name'          => __( 'WooCommerce Shop Sidebar', 'jovadd-lc' ),
 				'id'            => 'wc-sidebar',
-				'description'   => __( 'Shop sidebar widget area', 'picostrap5' ),
+				'description'   => __( 'Shop sidebar widget area', 'jovadd-lc' ),
 				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</aside>',
 				'before_title'  => '<h3 class="widget-title">',
@@ -182,4 +182,4 @@ if ( ! function_exists( 'picostrap_widgets_init' ) ) {
 
 
 	}
-} // End of function_exists( 'picostrap_widgets_init' ).
+} // End of function_exists( 'jovadd-lc_widgets_init' ).

@@ -34,7 +34,7 @@ get_header();
 
     <div class="row">
       <div class="col lead text-center w-100">
-        <div class="d-inline-block"><?php picostrap_pagination() ?></div>
+        <div class="d-inline-block"><?php jovadd-lc_pagination() ?></div>
       </div><!-- /col -->
     </div> <!-- /row -->
   </div>

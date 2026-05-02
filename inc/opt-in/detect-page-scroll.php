@@ -18,7 +18,7 @@ function pico_add_body_class_for_scrolled( $classes ) {
 //ADD SOME HTML & JS TO THE FOOTER 
 add_action( 'wp_footer', function(){ ?>
 	 
-	<div id="picostrap-page-top-indicator" class="position-absolute w-100 top-0" style="height:5px">
+	<div id="jovadd-lc-page-top-indicator" class="position-absolute w-100 top-0" style="height:5px">
 	</div>
 	 
 	<script>
@@ -40,7 +40,7 @@ add_action( 'wp_footer', function(){ ?>
 				
 					});
 				}, {threshold: 1});
-				picoBodyScrolledObserver.observe(document.querySelector('#picostrap-page-top-indicator')) ;
+				picoBodyScrolledObserver.observe(document.querySelector('#jovadd-lc-page-top-indicator')) ;
 			}
 		});
 	</script>

@@ -2,49 +2,49 @@
 /**
  * Modify editor
  *
- * @package picostrap5
+ * @package jovadd-lc
  */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 
-//add_action( 'admin_init', 'picostrap_wpdocs_theme_add_editor_styles' );
+//add_action( 'admin_init', 'jovadd-lc_wpdocs_theme_add_editor_styles' );
 
-if ( ! function_exists( 'picostrap_wpdocs_theme_add_editor_styles' ) ) {
+if ( ! function_exists( 'jovadd-lc_wpdocs_theme_add_editor_styles' ) ) {
 	/**
 	 * Registers an editor stylesheet for the theme.
 	 */
-	function picostrap_wpdocs_theme_add_editor_styles() {
+	function jovadd-lc_wpdocs_theme_add_editor_styles() {
 		add_editor_style( 'custom-editor-style.min.css' );
 	}
 }
 
-add_filter( 'mce_buttons_2', 'picostrap_tiny_mce_style_formats' );
+add_filter( 'mce_buttons_2', 'jovadd-lc_tiny_mce_style_formats' );
 
-if ( ! function_exists( 'picostrap_tiny_mce_style_formats' ) ) {
+if ( ! function_exists( 'jovadd-lc_tiny_mce_style_formats' ) ) {
 	/**
 	 * Reveals TinyMCE's hidden Style dropdown.
 	 *
 	 * @param array $buttons Array of Tiny MCE's button ids.
 	 * @return array
 	 */
-	function picostrap_tiny_mce_style_formats( $buttons ) {
+	function jovadd-lc_tiny_mce_style_formats( $buttons ) {
 		array_unshift( $buttons, 'styleselect' );
 		return $buttons;
 	}
 }
 
-add_filter( 'tiny_mce_before_init', 'picostrap_tiny_mce_before_init' );
+add_filter( 'tiny_mce_before_init', 'jovadd-lc_tiny_mce_before_init' );
 
-if ( ! function_exists( 'picostrap_tiny_mce_before_init' ) ) {
+if ( ! function_exists( 'jovadd-lc_tiny_mce_before_init' ) ) {
 	/**
 	 * Adds style options to TinyMCE's Style dropdown.
 	 *
 	 * @param array $settings TinyMCE settings array.
 	 * @return array
 	 */
-	function picostrap_tiny_mce_before_init( $settings ) {
+	function jovadd-lc_tiny_mce_before_init( $settings ) {
 
 		$style_formats = array(
 			array(

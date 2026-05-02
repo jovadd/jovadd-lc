@@ -1,62 +1,60 @@
 <?php
+/**
+ * Jovadd LC — functions.php
+ * Bootstrap 5 + LiveCanvas starter kit
+ * Author: Giovanni Caserta
+ * Author URI: https://github.com/jovadd
+ * Theme URI: https://github.com/jovadd/jovadd-lc
+ */
 
-// Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+// DE-ENQUEUE PARENT BOOTSTRAP JS SE PRESENTE
+add_action( 'wp_print_scripts', function(){
+    wp_dequeue_script( 'bootstrap5' );
+}, 100 );
 
-$picostrap_includes = array(
-	'/theme-settings.php',                  // Initialize theme default settings.
-	'/setup.php',                           // Theme setup and custom theme supports.
-	'/widgets.php',                         // Register widget area.
-	'/clean-head.php',						// Eliminates useless meta tags, emojis, etc            
-	'/enqueues.php', 						// Enqueue scripts and styles.     
-	'/template-tags.php',                   // Custom template tags for this theme.
-	'/pagination.php',                      // Custom pagination for this theme.
-	//'/hooks.php',                         // Custom hooks.
-	//'/extras.php',                        // Custom functions that act independently of the theme templates.
-	'/custom-comments.php',                 // Custom Comments file.
-	//'/jetpack.php',                       // Load Jetpack compatibility file.
-	'/bootstrap-navwalker.php',    			// Load custom WordPress nav walker. 
-	'/woocommerce.php',                     // Load WooCommerce functions.
-	'/editor.php',                          // Load Editor functions. 
-	'/customizer-assets/customizer.php',	//Defines Customizer options
-	'/picosass-compiler-integration.php',	//To interface the Customizer with the SCSS js compiler
-	//'/scssphp-legacy-compiler-integration.php', //To interface the Customizer with the SCSS php compiler
-	'/options-page.php',                  // Load theme options page. 
-	'/content-filtering.php',				//for LC compatibility when shutting down plugin
-    '/windpress-support.php',               //for deep integration with the WindPress plugin, for optional use of TailWind
-	'/livecanvas-config.php'				//for deep integration with the LiveCanvas plugi, setup LC configuration	
-);
+// ENQUEUE BOOTSTRAP JS
+add_action( 'wp_enqueue_scripts', function() {
+    wp_enqueue_script(
+        'bootstrap5-jovadd-lc',
+        get_template_directory_uri() . "/js/bootstrap.bundle.min.js",
+        array(),
+        null,
+        array('strategy' => 'defer', 'in_footer' => true)
+    );
+}, 101);
 
-foreach ( $picostrap_includes as $file ) {
-	require_once get_template_directory() . '/inc' . $file;
-}
+// ENQUEUE CUSTOM JS
+add_action( 'wp_enqueue_scripts', function() {
 
-//PURELY OPT-IN FEATURES ////////////////
+    // Globale — decommentare per attivare
+    // wp_enqueue_script(
+    //     'jovadd-lc-custom',
+    //     get_template_directory_uri() . '/js/custom.js',
+    //     array(),
+    //     null,
+    //     array('strategy' => 'defer', 'in_footer' => true)
+    // );
 
-//OPTIONAL: DISABLE WORDPRESS COMMENTS
-if (get_theme_mod("singlepost_disable_comments") ) require_once locate_template('/inc/opt-in/disable-comments.php'); 
+    // Solo su pagina specifica — decommentare e sostituire slug
+    // if (is_page('slug-pagina')) {
+    //     wp_enqueue_script(
+    //         'jovadd-lc-custom',
+    //         get_template_directory_uri() . '/js/custom.js',
+    //         array(),
+    //         null,
+    //         array('strategy' => 'defer', 'in_footer' => true)
+    //     );
+    // }
 
-//OPTIONAL: BACK TO TOP
-if (get_theme_mod("enable_back_to_top") ) require_once locate_template('/inc/opt-in/back-to-top.php');
+}, 102);
 
-//OPTIONAL: OPEN MENU ON HOVER  
-if (get_theme_mod("enable_open_menu_on_hover") ) require_once locate_template('/inc/opt-in/open-menu-on-hover.php');
+// REGISTRA MENU AGGIUNTIVI — decommentare se necessario
+// register_nav_menus( array(
+//     'secondary' => __( 'Secondary Menu', 'jovadd-lc' ),
+//     'footer'    => __( 'Footer Menu', 'jovadd-lc' ),
+// ));
 
-//OPTIONAL: LIGHTBOX  
-if (get_theme_mod("enable_lightbox") ) require_once locate_template('/inc/opt-in/lightbox.php');
-	
-//OPTIONAL: TOOLTIPS  
-if (get_theme_mod("enable_tooltips") ) require_once locate_template('/inc/opt-in/initialize-tooltips.php');
-	
-//OPTIONAL: DETECT PAGE SCROLL
-if (get_theme_mod("enable_detect_page_scroll") ) require_once locate_template('/inc/opt-in/detect-page-scroll.php');
+// SICUREZZA: DISABILITA APPLICATION PASSWORDS — decommentare se necessario
+// add_filter( 'wp_is_application_passwords_available', '__return_false' );
 
-//OPTIONAL: DISABLE GUTENBERG  
-if (get_theme_mod("disable_gutenberg") ) require_once locate_template('/inc/opt-in/disable-gutenberg.php');
-	
-//OPTIONAL: DISABLE WIDGETS BLOCK EDITOR  
-if (get_theme_mod("disable_widgets_block_editor") ) require_once locate_template('/inc/opt-in/disable-widgets-block-editor.php');
-	
-//OPTIONAL: DISABLE XML/RPC
-if (get_theme_mod("disable_xml_rpc") ) require_once locate_template('/inc/opt-in/disable-xml-rpc.php');
-	
+// CUSTOM CODE —————————————————————————————————————

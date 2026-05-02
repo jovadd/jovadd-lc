@@ -2,18 +2,18 @@
 /**
  * Check and setup theme's default settings
  *
- * @package picostrap5
+ * @package jovadd-lc
  */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-if ( ! function_exists( 'picostrap_setup_theme_default_settings' ) ) {
+if ( ! function_exists( 'jovadd-lc_setup_theme_default_settings' ) ) {
 	/**
 	 * Store default theme settings in database.
 	 */
-	function picostrap_setup_theme_default_settings() {
-		$defaults = picostrap_get_theme_default_settings();
+	function jovadd-lc_setup_theme_default_settings() {
+		$defaults = jovadd-lc_get_theme_default_settings();
 		$settings = get_theme_mods();
 		foreach ( $defaults as $setting_id => $default_value ) {
 			// Check if setting is set, if not set it to its default value.
@@ -24,17 +24,17 @@ if ( ! function_exists( 'picostrap_setup_theme_default_settings' ) ) {
 	}
 }
 
-if ( ! function_exists( 'picostrap_get_theme_default_settings' ) ) {
+if ( ! function_exists( 'jovadd-lc_get_theme_default_settings' ) ) {
 	/**
 	 * Retrieve default theme settings.
 	 *
 	 * @return array
 	 */
-	function picostrap_get_theme_default_settings() {
+	function jovadd-lc_get_theme_default_settings() {
 		$defaults = array(
-			'picostrap_posts_index_style' => 'default',   // Latest blog posts style.
-			'picostrap_sidebar_position'  => 'right',     // Sidebar position.
-			'picostrap_container_type'    => 'container', // Container width.
+			'jovadd-lc_posts_index_style' => 'default',   // Latest blog posts style.
+			'jovadd-lc_sidebar_position'  => 'right',     // Sidebar position.
+			'jovadd-lc_container_type'    => 'container', // Container width.
 		);
 
 		/**
@@ -42,7 +42,7 @@ if ( ! function_exists( 'picostrap_get_theme_default_settings' ) ) {
 		 *
 		 * @param array $defaults Array of default theme settings.
 		 */
-		return apply_filters( 'picostrap_theme_default_settings', $defaults );
+		return apply_filters( 'jovadd-lc_theme_default_settings', $defaults );
 	}
 }
 
@@ -60,9 +60,9 @@ add_action('admin_bar_menu', 'add_link_admin_bar', 999);
 function add_link_admin_bar($adminBar) {
 	$args = [
         'parent' => 'customize',
-		'id' => 'picostrap-theme',
-        'title' => 'Picostrap Theme Options', 
-        'href' => admin_url('themes.php?page=picostrap-theme-options'),
+		'id' => 'jovadd-lc-theme',
+        'title' => 'Jovadd LC Theme Options', 
+        'href' => admin_url('themes.php?page=jovadd-lc-theme-options'),
 	];
     $adminBar->add_node($args);
 }

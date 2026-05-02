@@ -34,7 +34,7 @@ if ( post_password_required() ) {
 			if ( 1 === (int) $comments_number ) {
 				printf(
 					/* translators: %s: post title */
-					esc_html_x( 'One thought on &ldquo;%s&rdquo;', 'comments title', 'picostrap5' ),
+					esc_html_x( 'One thought on &ldquo;%s&rdquo;', 'comments title', 'jovadd-lc' ),
 					'<span>' . get_the_title() . '</span>'
 				);
 			} else {
@@ -46,7 +46,7 @@ if ( post_password_required() ) {
 							'%1$s thoughts on &ldquo;%2$s&rdquo;',
 							$comments_number,
 							'comments title',
-							'picostrap5'
+							'jovadd-lc'
 						)
 					),
 					number_format_i18n( $comments_number ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -61,17 +61,17 @@ if ( post_password_required() ) {
 
 			<nav class="comment-navigation" id="comment-nav-above">
 
-				<h1 class="visually-hidden"><?php esc_html_e( 'Comment navigation', 'picostrap5' ); ?></h1>
+				<h1 class="visually-hidden"><?php esc_html_e( 'Comment navigation', 'jovadd-lc' ); ?></h1>
 
 				<?php if ( get_previous_comments_link() ) { ?>
 					<div class="nav-previous">
-						<?php previous_comments_link( __( '&larr; Older Comments', 'picostrap5' ) ); ?>
+						<?php previous_comments_link( __( '&larr; Older Comments', 'jovadd-lc' ) ); ?>
 					</div>
 				<?php } ?>
 
 				<?php	if ( get_next_comments_link() ) { ?>
 					<div class="nav-next">
-						<?php next_comments_link( __( 'Newer Comments &rarr;', 'picostrap5' ) ); ?>
+						<?php next_comments_link( __( 'Newer Comments &rarr;', 'jovadd-lc' ) ); ?>
 					</div>
 				<?php } ?>
 
@@ -96,17 +96,17 @@ if ( post_password_required() ) {
 
 			<nav class="comment-navigation" id="comment-nav-below">
 
-				<h1 class="visually-hidden"><?php esc_html_e( 'Comment navigation', 'picostrap5' ); ?></h1>
+				<h1 class="visually-hidden"><?php esc_html_e( 'Comment navigation', 'jovadd-lc' ); ?></h1>
 
 				<?php if ( get_previous_comments_link() ) { ?>
 					<div class="nav-previous">
-						<?php previous_comments_link( __( '&larr; Older Comments', 'picostrap5' ) ); ?>
+						<?php previous_comments_link( __( '&larr; Older Comments', 'jovadd-lc' ) ); ?>
 					</div>
 				<?php } ?>
 
 				<?php	if ( get_next_comments_link() ) { ?>
 					<div class="nav-next">
-						<?php next_comments_link( __( 'Newer Comments &rarr;', 'picostrap5' ) ); ?>
+						<?php next_comments_link( __( 'Newer Comments &rarr;', 'jovadd-lc' ) ); ?>
 					</div>
 				<?php } ?>
 

@@ -90,8 +90,8 @@ div#compile-error:hover{
  
 
 /* MAXIMIZE CSS EDITOR: enlarge the editor */
-.picostrap-maximize-editor { position: fixed;  left:0;  top: 45vh;bottom:0;height: auto}
-.picostrap-maximize-editor .CodeMirror-wrap {border-top: 3px solid #888;}
+.jovadd-lc-maximize-editor { position: fixed;  left:0;  top: 45vh;bottom:0;height: auto}
+.jovadd-lc-maximize-editor .CodeMirror-wrap {border-top: 3px solid #888;}
 
 
 /* HIDE FONT COMBINATIONS BY DEFAULT */
@@ -99,7 +99,7 @@ div#compile-error:hover{
 
 /* FOOTER TEXT / HEADER / FOOTER / TEXTAREAS */
 
-#_customize-input-picostrap_footer_text, #_customize-input-picostrap_header_code, #_customize-input-picostrap_footer_code {
+#_customize-input-jovadd-lc_footer_text, #_customize-input-jovadd-lc_header_code, #_customize-input-jovadd-lc_footer_code {
   height: 200px;
   font-size: 12px;
 }
@@ -148,16 +148,16 @@ div#compile-error:hover{
 
 /* DISABLED INPUTS */
 
-#_customize-input-picostrap_header_navbar_disabled,
-#_customize-input-picostrap_footer_disabled {
+#_customize-input-jovadd-lc_header_navbar_disabled,
+#_customize-input-jovadd-lc_footer_disabled {
     display: none;
 }
 
 
 /* FONT CODE IMPORT TEXTAREAS */
 
-#_customize-input-picostrap_body_font_loading_snippet,
-#_customize-input-picostrap_headings_font_loading_snippet {
+#_customize-input-jovadd-lc_body_font_loading_snippet,
+#_customize-input-jovadd-lc_headings_font_loading_snippet {
     pointer-events: none;
     opacity: 0.5;
     font-family: 'Courier New', Courier, monospace;
@@ -166,7 +166,7 @@ div#compile-error:hover{
 
 /* FONT HEADER CODE TEXTAREA */
 
-#_customize-input-picostrap_fonts_header_code {
+#_customize-input-jovadd-lc_fonts_header_code {
   min-height: 250px;
   font-size: 12px; 
   font-family: 'Courier New', Courier, monospace;

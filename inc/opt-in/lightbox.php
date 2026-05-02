@@ -22,7 +22,7 @@ add_action( 'wp_footer', function(){
 	if (isset($_GET['lc_page_editing_mode'])) return;
 	?>
 	<script>
-		//picostrap gLightbox integration
+		//jovadd-lc gLightbox integration
 		function pico_initialize_glightbox() {   
 			
 			//find elements that need to be 'lightboxed'

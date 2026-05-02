@@ -1,0 +1,13 @@
+[
+    {
+        "menu_name": "Main Menu",
+        "menu_slug": "main-menu",
+        "items": [
+            { "title": "Home", "url": "/", "menu_order": 1, "parent": "0", "type": "custom", "object": "custom", "object_id": "1", "classes": [""], "attr_title": "", "target": "", "description": "" },
+            { "title": "Chi Siamo", "url": "/chi-siamo", "menu_order": 2, "parent": "0", "type": "custom", "object": "custom", "object_id": "2", "classes": [""], "attr_title": "", "target": "", "description": "" },
+            { "title": "Servizi", "url": "/servizi", "menu_order": 3, "parent": "0", "type": "custom", "object": "custom", "object_id": "3", "classes": [""], "attr_title": "", "target": "", "description": "" },
+            { "title": "Blog", "url": "/blog", "menu_order": 4, "parent": "0", "type": "custom", "object": "custom", "object_id": "4", "classes": [""], "attr_title": "", "target": "", "description": "" },
+            { "title": "Contatti", "url": "/contatti", "menu_order": 5, "parent": "0", "type": "custom", "object": "custom", "object_id": "5", "classes": [""], "attr_title": "", "target": "", "description": "" }
+        ]
+    }
+]

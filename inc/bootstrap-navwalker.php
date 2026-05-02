@@ -4,7 +4,7 @@
  * https://github.com/AlexWebLab/bootstrap-5-wordpress-navbar-walker
  * Includes 2 custom patches for submenus on Bootstrap 5.1 by the LC Team
  *
- * @package picostrap5
+ * @package jovadd-lc
  */
 
 // Exit if accessed directly.

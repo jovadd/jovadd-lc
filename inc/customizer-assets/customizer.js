@@ -54,10 +54,10 @@
 			console.log("No CSS saving necessary, aborting ps_save_css_bundle");
 			return false;
 		}
-		formdata.append("nonce", picostrap_ajax_obj.nonce);
-		formdata.append("action", "picostrap_save_css_bundle");
+		formdata.append("nonce", jovadd-lc_ajax_obj.nonce);
+		formdata.append("action", "jovadd-lc_save_css_bundle");
 		formdata.append("css", theCss);
-		fetch(picostrap_ajax_obj.ajax_url, {
+		fetch(jovadd-lc_ajax_obj.ajax_url, {
 			method: "POST",
 			credentials: "same-origin",
 			headers: {
@@ -239,7 +239,7 @@
         if (css_snippet_body_font == "" && css_snippet_headings_font=="") html_code="";
 
         //populate the textarea with the full import code
-        $("#_customize-input-picostrap_fonts_header_code").val(html_code).change();
+        $("#_customize-input-jovadd-lc_fonts_header_code").val(html_code).change();
 
         //update CSS font loading snippet in preview
         var iframeDoc = document.querySelector('#customize-preview iframe').contentWindow.document;
@@ -381,8 +381,8 @@
 		
 		//ADD CODEMIRROR TO TEXTAREAS header and footer code. 
         // Initialize CodeMirror for the fields
-        var headerEditor = wp.codeEditor.initialize($('#_customize-input-picostrap_header_code')).codemirror;
-        var footerEditor = wp.codeEditor.initialize($('#_customize-input-picostrap_footer_code')).codemirror;
+        var headerEditor = wp.codeEditor.initialize($('#_customize-input-jovadd-lc_header_code')).codemirror;
+        var footerEditor = wp.codeEditor.initialize($('#_customize-input-jovadd-lc_footer_code')).codemirror;
 
         // Function to update the Customizer settings
         function updateCustomizerOriginalFields() {
@@ -390,8 +390,8 @@
             var footerContent = footerEditor.getValue();
 
             // Update the respective Customizer settings
-            wp.customize('picostrap_header_code').set(headerContent);
-            wp.customize('picostrap_footer_code').set(footerContent);
+            wp.customize('jovadd-lc_header_code').set(headerContent);
+            wp.customize('jovadd-lc_footer_code').set(footerContent);
         }
          
         // bind the update function to the change event
@@ -424,7 +424,7 @@
                 // User confirmed
                 $("#_customize-input-headings_font_object").val("");
                 $("#_customize-input-body_font_object").val("");
-                $("#_customize-input-picostrap_fonts_header_code").val("");
+                $("#_customize-input-jovadd-lc_fonts_header_code").val("");
                 ps_update_font_objects_and_import_code(); 
             } 
         }
@@ -589,7 +589,7 @@
 		$("body").on("click",".cs-toggle-csseditor-position",function(e){
 			e.preventDefault();
 			if ($(this).text()=="Maximize") $(this).text("Minimize"); else  $(this).text("Maximize");
-			$('#customize-control-custom_css').toggleClass('picostrap-maximize-editor');
+			$('#customize-control-custom_css').toggleClass('jovadd-lc-maximize-editor');
 		});
 		
 		/// VIDEO TUTORIAL LINKS ////////////////////////
@@ -708,7 +708,7 @@
 
 			// Step 6: Trigger a click event on the <a> element to initiate download
 			a.href = url;
-			a.download = 'picostrap_bs_variables.json';
+			a.download = 'jovadd-lc_bs_variables.json';
 			a.click();
 
 			// Clean up by revoking the URL

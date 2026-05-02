@@ -1,0 +1,1 @@
+Inserire qui il logo del sito come logo.svg

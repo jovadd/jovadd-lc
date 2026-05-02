@@ -10,7 +10,7 @@ add_action( 'wp_head', function  () {
 	if (!isset($_GET['customize_theme']) && !isset($_GET['compile_sass'])) return;
     
     //preload theme scss
-    $theme_filenames_str = "_bootstrap-loader _custom _picostrap _theme_variables _woocommerce _wp_basic_styles main ninjabootstrap/_borders ninjabootstrap/_letter-spacing ninjabootstrap/_positioning ninjabootstrap/_sizing ninjabootstrap/_theme_colors_shades ninjabootstrap/_variables";
+    $theme_filenames_str = "_bootstrap-loader _custom _jovadd-lc _theme_variables _woocommerce _wp_basic_styles main ninjabootstrap/_borders ninjabootstrap/_letter-spacing ninjabootstrap/_positioning ninjabootstrap/_sizing ninjabootstrap/_theme_colors_shades ninjabootstrap/_variables";
 	$theme_filenames_arr = explode (' ',$theme_filenames_str);
 	foreach($theme_filenames_arr as $theme_filename) {
 		?> 
@@ -70,7 +70,7 @@ add_action( 'wp_footer', function  () {
     ?>
 		<script>
 			//mark the static theme CSS as provisional 
-			document.querySelector("#picostrap-styles-css").classList.add("picostrap-provisional-css");
+			document.querySelector("#jovadd-lc-styles-css").classList.add("jovadd-lc-provisional-css");
 
 			//check there is a connection to the internet
 			if (!navigator.onLine) {alert("You need to be online to be able to use the frontend SCSS compiler"); throw new Error("No network");}
@@ -99,8 +99,8 @@ add_action( 'wp_footer', function  () {
 
 					//build the request to send via AJAX POST for saving css
 					const formdata = new FormData();
-					formdata.append("nonce", "<?php echo wp_create_nonce("picostrap_save_css_bundle") ?>");
-					formdata.append("action", "picostrap_save_css_bundle");
+					formdata.append("nonce", "<?php echo wp_create_nonce("jovadd-lc_save_css_bundle") ?>");
+					formdata.append("action", "jovadd-lc_save_css_bundle");
 					formdata.append("css", compiled.css);
 					formdata.append("sourceMap", compiled.sourceMap ? JSON.stringify(compiled.sourceMap) : "" );
 					fetch("<?php echo admin_url( 'admin-ajax.php' ) ?>", {
@@ -204,13 +204,13 @@ function ps_get_main_sass(){
 }
 
 //HANDLE AJAX ACTION FOR SAVING CSS BUNDLE
-add_action("wp_ajax_picostrap_save_css_bundle", function (){
+add_action("wp_ajax_jovadd-lc_save_css_bundle", function (){
     
 	//exit if unlogged or non admin
 	if(!is_user_logged_in() OR !current_user_can("administrator")  ) return; 
 	
     //check nonce
-    check_ajax_referer('picostrap_save_css_bundle', 'nonce');
+    check_ajax_referer('jovadd-lc_save_css_bundle', 'nonce');
 
 	//ADD SOME COMMENT
 	$compiled_css = stripslashes($_POST['css']);
@@ -218,7 +218,7 @@ add_action("wp_ajax_picostrap_save_css_bundle", function (){
 	// sourcemap
 	if (isset($_POST['sourceMap']) AND $_POST['sourceMap']!="") {
 		// Enable source map reference in the CSS file
-		if (apply_filters('picostrap_enable_sourcemap_in_css', false)) {
+		if (apply_filters('jovadd-lc_enable_sourcemap_in_css', false)) {
 			$compiled_css .= "\n/*# sourceMappingURL=bundle.css.map */";
 		}
 	}
@@ -231,13 +231,13 @@ add_action("wp_ajax_picostrap_save_css_bundle", function (){
 	}
 
 	//SAVE THE FILE
-	$saving_operation = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . picostrap_get_css_optional_subfolder_name() . picostrap_get_complete_css_filename(), $compiled_css, FS_CHMOD_FILE ); // , 0644 ?
+	$saving_operation = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . jovadd-lc_get_css_optional_subfolder_name() . jovadd-lc_get_complete_css_filename(), $compiled_css, FS_CHMOD_FILE ); // , 0644 ?
 	
 	if ($saving_operation) { // IF UPLOAD WAS SUCCESSFUL 
 		// also save source map if present on the payload
 		if (isset($_POST['sourceMap']) AND $_POST['sourceMap']!="") {
 			$source_map = stripslashes($_POST['sourceMap']);
-			$saving_operation_map = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . picostrap_get_css_optional_subfolder_name() . picostrap_get_complete_css_filename() . '.map', $source_map, FS_CHMOD_FILE );
+			$saving_operation_map = $wp_filesystem->put_contents( get_stylesheet_directory() . '/' . jovadd-lc_get_css_optional_subfolder_name() . jovadd-lc_get_complete_css_filename() . '.map', $source_map, FS_CHMOD_FILE );
 		}
 
 		//STORE CSS BUNDLE VERSION NUMBER
@@ -276,7 +276,7 @@ function ps_add_toolbar_items($admin_bar) {
 		//MAIN MENU ELEMENT
 		$wp_admin_bar->add_node(array(
 			'id' => 'ps-recompile-sass', 
-			'title' => '<span id="icon-picostrap-sass"></span>' . __(' Compiler', 'picostrap'),
+			'title' => '<span id="icon-jovadd-lc-sass"></span>' . __(' Compiler', 'jovadd-lc'),
 			'href' => add_query_arg(array(
 					'compile_sass' => '1',
 					'sass_nocache'=> '1',
@@ -311,7 +311,7 @@ function ps_add_toolbar_items($admin_bar) {
 		//sass autorecompile is active, print button to shutdown
 		$wp_admin_bar->add_node(array(
 			'id' => 'ps-recompile-sass', 
-			'title' => '<span id="icon-picostrap-sass"></span>' . __('Stop Compiler', 'picostrap'),
+			'title' => '<span id="icon-jovadd-lc-sass"></span>' . __('Stop Compiler', 'jovadd-lc'),
 			'href' => add_query_arg(array(
 					'compile_sass' => FALSE,
 					'sass_nocache'=> FALSE,
@@ -342,7 +342,7 @@ function ps_add_backend_toolbar_items($admin_bar) {
     // MAIN MENU ELEMENT - Link to Recompile SASS on the homepage
     $admin_bar->add_node([
         'id'    => 'ps-recompile-sass-backend',
-        'title' => '<span id="icon-picostrap-sass"></span>' . __('Recompile SASS', 'your-textdomain'),
+        'title' => '<span id="icon-jovadd-lc-sass"></span>' . __('Recompile SASS', 'your-textdomain'),
         'href'  => add_query_arg($base_query_args, home_url()),
     ]);
 
@@ -371,7 +371,7 @@ function ps_print_launch_icon_styles() {
 	if (!current_user_can("administrator")) return;
 ?>
 	<style> 
-		#icon-picostrap-sass:after {
+		#icon-jovadd-lc-sass:after {
 			display:inline-block; margin: 0 2px 0 0; vertical-align:middle; position: relative; content: ' ';  width: 24px;    height: 24px; background-size: contain; background-repeat: no-repeat; background-image: url('<?php echo get_template_directory_uri() ?>/inc/picosass/sass-logo.svg'); }	
 	</style>
 	<?php

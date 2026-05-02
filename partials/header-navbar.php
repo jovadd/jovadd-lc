@@ -2,12 +2,12 @@
 <div id="wrapper-navbar" itemscope itemtype="http://schema.org/WebSite">
 
     <a class="skip-link visually-hidden-focusable" href="#theme-main">
-        <?php esc_html_e('Skip to content', 'picostrap5'); ?>
+        <?php esc_html_e('Skip to content', 'jovadd-lc'); ?>
     </a>
 
 
-    <nav data-bs-theme="<?php echo get_theme_mod('picostrap_header_navbar_color_scheme_attr', 'dark') ?>"
-        class="navbar <?php echo get_theme_mod('picostrap_header_navbar_expand', 'navbar-expand-lg'); ?> <?php echo get_theme_mod('picostrap_header_navbar_position') . " " . get_theme_mod('picostrap_header_navbar_color_choice', 'bg-dark'); ?>"
+    <nav data-bs-theme="<?php echo get_theme_mod('jovadd-lc_header_navbar_color_scheme_attr', 'dark') ?>"
+        class="navbar <?php echo get_theme_mod('jovadd-lc_header_navbar_expand', 'navbar-expand-lg'); ?> <?php echo get_theme_mod('jovadd-lc_header_navbar_position') . " " . get_theme_mod('jovadd-lc_header_navbar_color_choice', 'bg-dark'); ?>"
         aria-label="Main Navigation">
         <div class="container">
             <div id="logo-tagline-wrap">
@@ -69,7 +69,7 @@
 
                 <?php if (get_theme_mod('enable_search_form')): ?>
                     <form action="<?php echo bloginfo('url') ?>" method="get" id="header-search-form" class="me-4">
-                        <input class="form-control" type="text" placeholder="<?php _e("Search", 'picostrap5') ?>" aria-label="<?php _e("Search", 'picostrap5') ?>" name="s"
+                        <input class="form-control" type="text" placeholder="<?php _e("Search", 'jovadd-lc') ?>" aria-label="<?php _e("Search", 'jovadd-lc') ?>" name="s"
                             value="<?php the_search_query(); ?>">
                     </form>
                 <?php endif ?>
@@ -83,7 +83,7 @@
                         </svg>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="theme-toggle">
-                            <label class="form-check-label visually-hidden" for="theme-toggle"> <?php _e("Toggle Dark / Light mode", 'picostrap5') ?>
+                            <label class="form-check-label visually-hidden" for="theme-toggle"> <?php _e("Toggle Dark / Light mode", 'jovadd-lc') ?>
                             </label>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"

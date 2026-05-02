@@ -1,4 +1,19 @@
 
-//LEGACY FILE
-//KEPT FOR COMPATIBILITY WITH OLDER CHILD THEMES
-//DO NOT WRITE YOUR CODE IN HERE, EDIT IN THE CHILD THEME PLEASE
+$body-bg: #ffffff !default;
+$body-color: #111111 !default;
+$primary: #111111 !default;
+$secondary: #f5f5f5 !default;
+$light: #f8f9fa !default;
+$dark: #111111 !default;
+$font-family-base: "Inter", sans-serif !default;
+$headings-font-family: "Inter", sans-serif !default;
+$enable-rounded: false !default;
+$enable-shadows: false !default;
+$enable-gradients: false !default;
+$enable-rfs: true !default;
+$border-radius-sm: 0.25rem !default;
+$border-radius-lg: 0.5rem !default;
+$border-radius-xl: 1rem !default;
+$border-radius-2xl: 2rem !default;
+$input-btn-padding-y: 0.75rem !default;
+$input-btn-padding-x: 1.5rem !default;

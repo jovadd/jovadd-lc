@@ -225,7 +225,7 @@ export function Compile(sassParams = {}, theCallback = () => { }) {
             document.querySelector('#picosass-injected-style').innerHTML = cssWithSourceMap;
 
             //remove initial static CSS, if present (just to prevent FOUC)
-            document.querySelector(".picostrap-provisional-css")?.setAttribute("disabled", "true");
+            document.querySelector(".jovadd-lc-provisional-css")?.setAttribute("disabled", "true");
 
             //show compiled size
             const theFeedback = `SCSS compiled successfully. <span>Approx. CSS bundle size:  ${measureStringSizeInKB(compiled.css)} KB (${measureEstimatedGzippedSizeInKB(compiled.css)} KB gzipped) </span><span>Execution time: ${(timeEnd - timeStart) / 1000} secs</span>`;

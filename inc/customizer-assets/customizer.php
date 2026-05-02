@@ -4,38 +4,38 @@
 defined( 'ABSPATH' ) || exit;
 
 //ADD BODY CLASSES to support menu customization in site frontend  //////////////////////////////////////////////////////////////////////////////////////////////////////////
-add_filter( 'body_class', 'picostrap_config_body_classes' );
-function picostrap_config_body_classes( $classes ) {
+add_filter( 'body_class', 'jovadd-lc_config_body_classes' );
+function jovadd-lc_config_body_classes( $classes ) {
 
 	//if we are using LC's custom header, don't add anything
 	if (function_exists('lc_custom_header')) return $classes; 
 	
-	$classes[]="picostrap_header_navbar_position_".get_theme_mod('picostrap_header_navbar_position');
-	$classes[]="picostrap_header_navbar_color_choice_".get_theme_mod('picostrap_header_navbar_color_choice');
+	$classes[]="jovadd-lc_header_navbar_position_".get_theme_mod('jovadd-lc_header_navbar_position');
+	$classes[]="jovadd-lc_header_navbar_color_choice_".get_theme_mod('jovadd-lc_header_navbar_color_choice');
 
-    if (get_theme_mod("enable_topbar")) $classes[]="picostrap_topbar_enabled";
+    if (get_theme_mod("enable_topbar")) $classes[]="jovadd-lc_topbar_enabled";
 	
 	return $classes;
 }
 
 //REMOVE BODY MARGIN-TOP GIVEN BY WORDPRESS ADMIN BAR //////////////////////////////////////////////////////////////////////////////////////////////////////////
-add_action('get_header', 'picostrap_filter_head');
-function picostrap_filter_head() {
-	if (get_theme_mod('picostrap_header_navbar_position')=="fixed-top") remove_action('wp_head', '_admin_bar_bump_cb');
+add_action('get_header', 'jovadd-lc_filter_head');
+function jovadd-lc_filter_head() {
+	if (get_theme_mod('jovadd-lc_header_navbar_position')=="fixed-top") remove_action('wp_head', '_admin_bar_bump_cb');
 }
 
 
 // ADD CUSTOM JS & CSS TO CUSTOMIZER //////////////////////////////////////////////////////////////////////////////////////////////////////////
-add_action( 'customize_controls_enqueue_scripts', 'picostrap_customize_enqueue' );
-function picostrap_customize_enqueue() {
+add_action( 'customize_controls_enqueue_scripts', 'jovadd-lc_customize_enqueue' );
+function jovadd-lc_customize_enqueue() {
 	wp_enqueue_script( 'custom-customize', get_template_directory_uri() . '/inc/customizer-assets/customizer.js', array( 'jquery', 'customize-controls' ), rand(0,1000), true );
 	 
 	wp_localize_script(
 		'custom-customize',
-		'picostrap_ajax_obj',
+		'jovadd-lc_ajax_obj',
 		array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce'    => wp_create_nonce( 'picostrap_save_css_bundle' ),
+			'nonce'    => wp_create_nonce( 'jovadd-lc_save_css_bundle' ),
 		)
 	);
 	
@@ -62,40 +62,40 @@ function picostrap_customize_enqueue() {
 	
 ////////DECLARE CUSTOMIZER SECTIONS ////////////////////////////////////////////////
 
-add_action("customize_register","picostrap_theme_customize_register");
+add_action("customize_register","jovadd-lc_theme_customize_register");
 	
-function picostrap_theme_customize_register($wp_customize) {
+function jovadd-lc_theme_customize_register($wp_customize) {
 
 	//COLORS section is already built,
     // so we dont need to define it
 
 	$wp_customize->add_section("typography", array(
-        "title" => __("Typography", 'picostrap5'),
+        "title" => __("Typography", 'jovadd-lc'),
         "priority" => 50,
     ));
 	 
 	$wp_customize->add_section("components", array(
-        "title" => __("Global Options", 'picostrap5'),
+        "title" => __("Global Options", 'jovadd-lc'),
         "priority" => 50,
     ));
 	
 	$wp_customize->add_section("buttons-forms", array(
-        "title" => __("Forms", 'picostrap5'),
+        "title" => __("Forms", 'jovadd-lc'),
         "priority" => 50,
     ));
 
 	$wp_customize->add_section("buttons", array(
-        "title" => __("Buttons", 'picostrap5'),
+        "title" => __("Buttons", 'jovadd-lc'),
         "priority" => 50,
     ));
 
     $wp_customize->add_section("navbars", array(
-        "title" => __("Navbars", 'picostrap5'),
+        "title" => __("Navbars", 'jovadd-lc'),
         "priority" => 50,
     ));
 	
 	//istantiate  all controls needed for controlling the SCSS variables
-	foreach(picostrap_get_scss_variables_array() as $section_slug => $section_data):
+	foreach(jovadd-lc_get_scss_variables_array() as $section_slug => $section_data):
 	
 		foreach($section_data as $variable_name => $variable_props):
 			 
@@ -118,7 +118,7 @@ function picostrap_theme_customize_register($wp_customize) {
 					$wp_customize,
 					$variable_slug, //give it an ID
 					array(
-						'label' => __( $variable_pretty_format_name, 'picostrap5' ), //set the label to appear in the Customizer
+						'label' => __( $variable_pretty_format_name, 'jovadd-lc' ), //set the label to appear in the Customizer
 						'description' => $optional_grouptitle. " (<span class='variable-name'>".$variable_name."</span>) ".$optional_comment, 
 						'section' => $section_slug, //select the section for it to appear under  
 						)
@@ -135,7 +135,7 @@ function picostrap_theme_customize_register($wp_customize) {
 					$wp_customize,
 					$variable_slug,
 					array(
-						'label' => __( $variable_pretty_format_name, 'picostrap5' ), //set the label to appear in the Customizer
+						'label' => __( $variable_pretty_format_name, 'jovadd-lc' ), //set the label to appear in the Customizer
 						'description' => $optional_grouptitle.  " (<span class='variable-name'>".$variable_name."</span>) " .$optional_comment, 
 						'section' => $section_slug, //select the section for it to appear under
 						'type' => 'checkbox'
@@ -151,13 +151,13 @@ function picostrap_theme_customize_register($wp_customize) {
 					"default" => $default,
 					"transport" => (0 && in_array($variable_slug, array('SCSSvar_font-family-base','SCSSvar_headings-font-family')) )  ? "refresh" : "postMessage",
 					//"default" => "1rem",
-					//'sanitize_callback' => 'picostrap_sanitize_rem'
+					//'sanitize_callback' => 'jovadd-lc_sanitize_rem'
 				));
 				$wp_customize->add_control(new WP_Customize_Control(
 					$wp_customize,
 					$variable_slug,
 					array(
-						'label' => __( $variable_pretty_format_name, 'picostrap5' ), //set the label to appear in the Customizer
+						'label' => __( $variable_pretty_format_name, 'jovadd-lc' ), //set the label to appear in the Customizer
 						'description' => $optional_grouptitle. " <!-- (".$variable_name.") -->".$placeholder_html." ". $optional_comment,  
 						'section' => $section_slug, //select the section for it to appear under
 						'type' => 'text',
@@ -173,19 +173,19 @@ function picostrap_theme_customize_register($wp_customize) {
 	endforeach;
 
 	//SANITIZE CHECKBOX
-	function picostrap_sanitize_checkbox( $input ) {		return ( ( isset( $input ) && true == $input ) ? true : false ); }
+	function jovadd-lc_sanitize_checkbox( $input ) {		return ( ( isset( $input ) && true == $input ) ? true : false ); }
 
 	//COLORS: ANDROID CHROME HEADER COLOR
-	$wp_customize->add_setting(  'picostrap_header_chrome_color',  array(
+	$wp_customize->add_setting(  'jovadd-lc_header_chrome_color',  array(
 		'default' => '', // Give it a default
 		'transport" => "postMessage',
 		));
 		$wp_customize->add_control(
 		new WP_Customize_Color_Control(
 		$wp_customize,
-		'picostrap_header_chrome_color', //give it an ID
+		'jovadd-lc_header_chrome_color', //give it an ID
 		array(
-			'label' => __( 'Header Color in Android Chrome', 'picostrap5' ), //set the label to appear in the Customizer
+			'label' => __( 'Header Color in Android Chrome', 'jovadd-lc' ), //set the label to appear in the Customizer
 			'section' => 'colors', //select the section for it to appear under 
 			'description' =>" <span hidden class='cs-option-group-title'>Extra</span>", //to implement a divisor
 			'type' => 'color'  
@@ -201,7 +201,7 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         'header_disable_tagline',
         array(
-            'label' => __('Hide Tagline', 'picostrap5'),
+            'label' => __('Hide Tagline', 'jovadd-lc'),
             'section' => 'title_tagline',  
             'type'     => 'checkbox',
 			)
@@ -210,43 +210,43 @@ function picostrap_theme_customize_register($wp_customize) {
     //   NAVBAR SECTION //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if (function_exists('lc_custom_header')) {
         $wp_customize->add_section("nav", array(
-            "title" => __("Main Navigation Bar [Disabled]", 'picostrap5'),
+            "title" => __("Main Navigation Bar [Disabled]", 'jovadd-lc'),
             "priority" => 60,
         ));
 
         // Just a message
-        $wp_customize->add_setting("picostrap_header_navbar_disabled", array(
+        $wp_customize->add_setting("jovadd-lc_header_navbar_disabled", array(
             "default" => "",
             "transport" => "postMessage",
         ));
         $wp_customize->add_control(new WP_Customize_Control(
             $wp_customize,
-            "picostrap_header_navbar_disabled",
+            "jovadd-lc_header_navbar_disabled",
             array(
-                'label' => __('You have enabled the LiveCanvas option to handle header, so these options are disabled.', 'picostrap5'),
+                'label' => __('You have enabled the LiveCanvas option to handle header, so these options are disabled.', 'jovadd-lc'),
                 'section' => 'nav',
             )
         ));
 
     } else {
         $wp_customize->add_section("nav", array(
-            "title" => __("Main Navigation Bar", 'picostrap5'),
+            "title" => __("Main Navigation Bar", 'jovadd-lc'),
             "priority" => 60,
         ));
         
         // HEADER NAVBAR EXPAND ON BREAKPOINT
-        $wp_customize->add_setting("picostrap_header_navbar_expand", array(
+        $wp_customize->add_setting("jovadd-lc_header_navbar_expand", array(
             "default" => "navbar-expand-md",
             "transport" => "postMessage",
         ));
         $wp_customize->add_control(new WP_Customize_Control(
             $wp_customize,
-            "picostrap_header_navbar_expand",
+            "jovadd-lc_header_navbar_expand",
             array(
-                'label' => __('Navbar Expansion', 'picostrap5'),
+                'label' => __('Navbar Expansion', 'jovadd-lc'),
                 'section' => 'nav',
                 'type'     => 'radio',
-                'description' => __('Navbar is Collapsed on mobile, and expands to a full blown menubar on chosen breakpoint', 'picostrap5'),
+                'description' => __('Navbar is Collapsed on mobile, and expands to a full blown menubar on chosen breakpoint', 'jovadd-lc'),
                 'choices'  => array(
                     'navbar-expand-none'  => 'Never expand, keep always collapsed', 
                     'navbar-expand-sm'  => 'Expand on SM and upper',
@@ -259,15 +259,15 @@ function picostrap_theme_customize_register($wp_customize) {
         ));
 
         // HEADER NAVBAR POSITION
-        $wp_customize->add_setting("picostrap_header_navbar_position", array(
+        $wp_customize->add_setting("jovadd-lc_header_navbar_position", array(
             "default" => "",
             "transport" => "postMessage",
         ));
         $wp_customize->add_control(new WP_Customize_Control(
             $wp_customize,
-            "picostrap_header_navbar_position",
+            "jovadd-lc_header_navbar_position",
             array(
-                'label' => __('Navbar Position', 'picostrap5'),
+                'label' => __('Navbar Position', 'jovadd-lc'),
                 'section' => 'nav',
                 'type'     => 'radio',
                 'choices'  => array(
@@ -288,8 +288,8 @@ function picostrap_theme_customize_register($wp_customize) {
             $wp_customize,
             "enable_detect_page_scroll",
             array(
-                "label" => __("Enable Page Scrolling Detection", 'picostrap5'),
-                "description" => __("Publish and exit the Customizer to see the effect. Adds a scroll-position-at-top / scroll-position-not-at-top class to the BODY element according to scroll position. Customize via CSS. Use with Navbar Position set to Fixed for best results. <!--  <a target='_blank' href='#'>Tutorial Coming Soon</a> --> ", 'picostrap5'),
+                "label" => __("Enable Page Scrolling Detection", 'jovadd-lc'),
+                "description" => __("Publish and exit the Customizer to see the effect. Adds a scroll-position-at-top / scroll-position-not-at-top class to the BODY element according to scroll position. Customize via CSS. Use with Navbar Position set to Fixed for best results. <!--  <a target='_blank' href='#'>Tutorial Coming Soon</a> --> ", 'jovadd-lc'),
                 "section" => "nav", 
                 'type'     => 'checkbox',
                 )
@@ -297,15 +297,15 @@ function picostrap_theme_customize_register($wp_customize) {
 
 
         //HEADERNAVBAR COLOR CHOICE
-        $wp_customize->add_setting("picostrap_header_navbar_color_choice", array(
+        $wp_customize->add_setting("jovadd-lc_header_navbar_color_choice", array(
             'default' => 'bg-dark',
             "transport" => "postMessage",
         ));
         $wp_customize->add_control(new WP_Customize_Control(
             $wp_customize,
-            "picostrap_header_navbar_color_choice",
+            "jovadd-lc_header_navbar_color_choice",
             array(
-                'label' => __('Navbar Background Color', 'picostrap5'),
+                'label' => __('Navbar Background Color', 'jovadd-lc'),
                 'section' => 'nav',
                 'type'     => 'select',
                 'choices'  => array(
@@ -331,15 +331,15 @@ function picostrap_theme_customize_register($wp_customize) {
         ));
         
         //HEADERNAVBAR COLOR SCHEME
-        $wp_customize->add_setting("picostrap_header_navbar_color_scheme_attr", array(
+        $wp_customize->add_setting("jovadd-lc_header_navbar_color_scheme_attr", array(
             'default' => 'dark',
             "transport" => "postMessage",
         ));
         $wp_customize->add_control(new WP_Customize_Control(
             $wp_customize,
-            "picostrap_header_navbar_color_scheme_attr",
+            "jovadd-lc_header_navbar_color_scheme_attr",
             array(
-                'label' => __('Color Scheme (Menubar links)', 'picostrap5'),
+                'label' => __('Color Scheme (Menubar links)', 'jovadd-lc'),
                 'section' => 'nav',
                 'type'     => 'radio',
                 'choices'  => array(
@@ -359,7 +359,7 @@ function picostrap_theme_customize_register($wp_customize) {
             $wp_customize,
             "enable_search_form",
             array(
-                "label" => __("Enable Search Form", 'picostrap5'),
+                "label" => __("Enable Search Form", 'jovadd-lc'),
                 "section" => "nav", 
                 'type'     => 'checkbox',
                 )
@@ -374,7 +374,7 @@ function picostrap_theme_customize_register($wp_customize) {
             $wp_customize,
             "enable_dark_mode_switch",
             array(
-                "label" => __("Enable Dark Mode Switch", 'picostrap5'),
+                "label" => __("Enable Dark Mode Switch", 'jovadd-lc'),
                 "section" => "nav", 
                 'type'     => 'checkbox',
                 )
@@ -383,7 +383,7 @@ function picostrap_theme_customize_register($wp_customize) {
 
         //  TOPBAR SECTION //////////////////////////////////////////////////////////////////////////////////////////////////////////
         $wp_customize->add_section("topbar", array(
-            "title" => __("Optional Topbar", 'picostrap5'),
+            "title" => __("Optional Topbar", 'jovadd-lc'),
             "priority" => 60,
         ));
         
@@ -396,8 +396,8 @@ function picostrap_theme_customize_register($wp_customize) {
             $wp_customize,
             "enable_topbar",
             array(
-                "label" => __("Enable Topbar", 'picostrap5'),
-                "description" => __("Requires Navbar position set to 'Standard static top'", 'picostrap5'),
+                "label" => __("Enable Topbar", 'jovadd-lc'),
+                "description" => __("Requires Navbar position set to 'Standard static top'", 'jovadd-lc'),
                 "section" => "topbar", 
                 'type'     => 'checkbox',
                 )
@@ -412,7 +412,7 @@ function picostrap_theme_customize_register($wp_customize) {
             $wp_customize,
             "topbar_content",
             array(
-                "label" => __("Topbar Text / HTML", 'picostrap5'),
+                "label" => __("Topbar Text / HTML", 'jovadd-lc'),
                 "section" => "topbar",
                 'type'     => 'textarea',
             )
@@ -427,7 +427,7 @@ function picostrap_theme_customize_register($wp_customize) {
             $wp_customize,
             "topbar_bg_color_choice",
             array(
-                'label' => __('Topbar Background Color', 'picostrap5'),
+                'label' => __('Topbar Background Color', 'jovadd-lc'),
                 'section' => 'topbar',
                 'type'     => 'radio',
                 'choices'  => array(
@@ -453,7 +453,7 @@ function picostrap_theme_customize_register($wp_customize) {
             $wp_customize,
             "topbar_text_color_choice",
             array(
-                'label' => __('Topbar Text Color', 'picostrap5'),
+                'label' => __('Topbar Text Color', 'jovadd-lc'),
                 'section' => 'topbar',
                 'type'     => 'radio',
                 'choices'  => array(
@@ -473,40 +473,40 @@ function picostrap_theme_customize_register($wp_customize) {
 	//ADD SECTION FOR FOOTER  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if (function_exists('lc_custom_footer')) {
         $wp_customize->add_section("footer", array(
-            "title" => __("Footer [Disabled]", 'picostrap5'),
+            "title" => __("Footer [Disabled]", 'jovadd-lc'),
             "priority" => 100,
         ));
 
         // Just a message
-        $wp_customize->add_setting("picostrap_footer_disabled", array(
+        $wp_customize->add_setting("jovadd-lc_footer_disabled", array(
             "default" => "",
             "transport" => "refresh",
         ));
         $wp_customize->add_control(new WP_Customize_Control(
             $wp_customize,
-            "picostrap_footer_disabled",
+            "jovadd-lc_footer_disabled",
             array(
-                'label' => __('You have enabled the LiveCanvas option to handle footer, so these options are disabled.', 'picostrap5'),
+                'label' => __('You have enabled the LiveCanvas option to handle footer, so these options are disabled.', 'jovadd-lc'),
                 'section' => 'footer',
             )
         ));
 
     } else {
         $wp_customize->add_section("footer", array(
-            "title" => __("Footer", 'picostrap5'),
+            "title" => __("Footer", 'jovadd-lc'),
             "priority" => 100,
         ));
         
         //FOOTER TEXT
-        $wp_customize->add_setting("picostrap_footer_text", array(
+        $wp_customize->add_setting("jovadd-lc_footer_text", array(
             "default" => "",
             "transport" => "postMessage",
         ));
         $wp_customize->add_control(new WP_Customize_Control(
             $wp_customize,
-            "picostrap_footer_text",
+            "jovadd-lc_footer_text",
             array(
-                "label" => __("Footer Text", 'picostrap5'),
+                "label" => __("Footer Text", 'jovadd-lc'),
                 "description"  => "THIS SIMPLE FIELD can contain HTML and is displayed into the 'colophon', the very bottom of the site. <br><br>TO BUILD A MORE COMPLEX FOOTER, USE THE WIDGETED AREA. <br>To enable it, populate it from the backend's <a target='_blank' href='".admin_url('widgets.php')."'>Widgets page</a>",
                 "section" => "footer",
                 'type'     => 'textarea',
@@ -517,7 +517,7 @@ function picostrap_theme_customize_register($wp_customize) {
 	
 	// ADD SECTION FOR SINGLE POST & ARCHIVES //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	$wp_customize->add_section("singleposts", array(
-        "title" => __("Single Post & Archives", 'picostrap5'),
+        "title" => __("Single Post & Archives", 'jovadd-lc'),
         "priority" => 160,
     ));
 		
@@ -530,8 +530,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "singlepost_disable_entry_cats",
         array(
-            "label" => __("Hide Categories", 'picostrap5'),
-			//"description" => __("Publish and exit the Customizer to see the effect", 'picostrap5'),
+            "label" => __("Hide Categories", 'jovadd-lc'),
+			//"description" => __("Publish and exit the Customizer to see the effect", 'jovadd-lc'),
             "section" => "singleposts", 
             'type'     => 'checkbox',
 			)
@@ -547,8 +547,8 @@ function picostrap_theme_customize_register($wp_customize) {
 		$wp_customize,
 		"singlepost_disable_entry_meta",
 		array(
-			"label" => __("Hide Post Metas: Date and Author", 'picostrap5'),
-			//"description" => __("Publish and exit the Customizer to see the effect", 'picostrap5'),
+			"label" => __("Hide Post Metas: Date and Author", 'jovadd-lc'),
+			//"description" => __("Publish and exit the Customizer to see the effect", 'jovadd-lc'),
 			"section" => "singleposts", 
 			'type'     => 'checkbox',
 			)
@@ -564,8 +564,8 @@ function picostrap_theme_customize_register($wp_customize) {
 		$wp_customize,
 		"singlepost_disable_author",
 		array(
-			"label" => __("Hide Post Author", 'picostrap5'),
-			//"description" => __("Publish and exit the Customizer to see the effect", 'picostrap5'),
+			"label" => __("Hide Post Author", 'jovadd-lc'),
+			//"description" => __("Publish and exit the Customizer to see the effect", 'jovadd-lc'),
 			"section" => "singleposts", 
 			'type'     => 'checkbox',
 			)
@@ -580,8 +580,8 @@ function picostrap_theme_customize_register($wp_customize) {
 		$wp_customize,
 		"singlepost_disable_date",
 		array(
-			"label" => __("Hide Post Date", 'picostrap5'),
-			//"description" => __("Publish and exit the Customizer to see the effect", 'picostrap5'),
+			"label" => __("Hide Post Date", 'jovadd-lc'),
+			//"description" => __("Publish and exit the Customizer to see the effect", 'jovadd-lc'),
 			"section" => "singleposts", 
 			'type'     => 'checkbox',
 			)
@@ -596,8 +596,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "enable_sharing_buttons",
         array(
-            "label" => __("Enable Sharing Buttons after the Content", 'picostrap5'),
-			"description" => __("Pure HTML only, SVG inline icons, zero bloat", 'picostrap5'),
+            "label" => __("Enable Sharing Buttons after the Content", 'jovadd-lc'),
+			"description" => __("Pure HTML only, SVG inline icons, zero bloat", 'jovadd-lc'),
             "section" => "singleposts", 
             'type'     => 'checkbox',
 			)
@@ -607,7 +607,7 @@ function picostrap_theme_customize_register($wp_customize) {
 	/* 
 	// ADD A SECTION FOR ARCHIVES ///////////////////////////////
 	$wp_customize->add_section("archives", array(
-        "title" => __("Archive Templates", 'picostrap5'),
+        "title" => __("Archive Templates", 'jovadd-lc'),
         "priority" => 160,
     ));
 	
@@ -622,7 +622,7 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "archives_template",
         array(
-            "label" => __("Template", 'picostrap5'),
+            "label" => __("Template", 'jovadd-lc'),
             "section" => "archives",
             "settings" => "archives_template",
             'type'     => 'select',
@@ -639,20 +639,20 @@ function picostrap_theme_customize_register($wp_customize) {
 	
 	// ADD A SECTION FOR HEADER & FOOTER CODE /////////////////////////////////////
 	$wp_customize->add_section("addcode", array(
-        "title" => __("Header / Footer Code", 'picostrap5'),
+        "title" => __("Header / Footer Code", 'jovadd-lc'),
         "priority" => 180,
     ));
 	
 	//ADD HEADER CODE  
-	$wp_customize->add_setting("picostrap_header_code", array(
+	$wp_customize->add_setting("jovadd-lc_header_code", array(
         "default" => "",
         "transport" => "postMessage",
     ));
 	$wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        "picostrap_header_code",
+        "jovadd-lc_header_code",
         array(
-            "label" => __("Add code to Header", 'picostrap5'),
+            "label" => __("Add code to Header", 'jovadd-lc'),
             "section" => "addcode",
             'type'     => 'textarea',
 			'description' =>'Will be added to the &lt;HEAD&gt; of all site pages'
@@ -660,15 +660,15 @@ function picostrap_theme_customize_register($wp_customize) {
     ));
 	
 	//ADD FOOTER CODE 
-	$wp_customize->add_setting("picostrap_footer_code", array(
+	$wp_customize->add_setting("jovadd-lc_footer_code", array(
         "default" => "",
         "transport" => "postMessage",
     ));
 	$wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        "picostrap_footer_code",
+        "jovadd-lc_footer_code",
         array(
-            "label" => __("Add code to Footer", 'picostrap5'),
+            "label" => __("Add code to Footer", 'jovadd-lc'),
             "section" => "addcode",
             'type'     => 'textarea',
 			'description' =>'Will be added before closing the &lt;BODY&gt;  of all site pages'
@@ -676,16 +676,16 @@ function picostrap_theme_customize_register($wp_customize) {
     ));
 
 	//ADD FONT LOADING HEADER CODE  
-	$wp_customize->add_setting("picostrap_fonts_header_code", array(
+	$wp_customize->add_setting("jovadd-lc_fonts_header_code", array(
         "default" => "",
 		//"transport" => "refresh",
         "transport" => "postMessage", // and no custom js is added: so no live page update is done, how it should be - but causes unstable behaviour
     ));
 	$wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        "picostrap_fonts_header_code",
+        "jovadd-lc_fonts_header_code",
         array(
-            "label" => __("Font Loading Header code", 'picostrap5'),
+            "label" => __("Font Loading Header code", 'jovadd-lc'),
             "section" => "addcode",
             'type'     => 'textarea',
 			'description' =>__('
@@ -702,17 +702,17 @@ function picostrap_theme_customize_register($wp_customize) {
 	
     /*
 	//USE ALTERNATIVE FONT SOURCE FOR GDPR COMPLIANCE
-	$wp_customize->add_setting("picostrap_fonts_use_alternative_font_source", array(
+	$wp_customize->add_setting("jovadd-lc_fonts_use_alternative_font_source", array(
         "default" => "",
         "transport" => "refresh",
     ));
 	$wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        "picostrap_fonts_use_alternative_font_source",
+        "jovadd-lc_fonts_use_alternative_font_source",
         array(
-            "label" => __("Load Google Fonts anonymously", 'picostrap5'),
+            "label" => __("Load Google Fonts anonymously", 'jovadd-lc'),
 			"description" =>  __("<b>Google Fonts can be an issue for GDPR compliance in Europe. </b>").
-			__("Checking this option, Google fonts will be loaded from the privacy compliant <a target='_blank' href='https://fonts.coollabs.io/'>Coollabs Font repository</a>. ", 'picostrap5'),
+			__("Checking this option, Google fonts will be loaded from the privacy compliant <a target='_blank' href='https://fonts.coollabs.io/'>Coollabs Font repository</a>. ", 'jovadd-lc'),
             "section" => "addcode", 
             'type'     => 'checkbox',
 			)
@@ -720,17 +720,17 @@ function picostrap_theme_customize_register($wp_customize) {
     */
 
 	//DISABLE FONTLOADING HEADER CODE  
-	$wp_customize->add_setting("picostrap_fonts_header_code_disable", array(
+	$wp_customize->add_setting("jovadd-lc_fonts_header_code_disable", array(
         "default" => "",
         "transport" => "refresh",
     ));
 	$wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        "picostrap_fonts_header_code_disable",
+        "jovadd-lc_fonts_header_code_disable",
         array(
-            "label" => __("Disable the Font Loading in Header", 'picostrap5'),
+            "label" => __("Disable the Font Loading in Header", 'jovadd-lc'),
 			"description" =>  __("<b>Keep this unchecked, unless you really want. </b>").__("Prevents the code of 
-			the textarea above from being served in the site's &lt;head&gt;. ", 'picostrap5'),
+			the textarea above from being served in the site's &lt;head&gt;. ", 'jovadd-lc'),
             "section" => "addcode", 
             'type'     => 'checkbox',
 			)
@@ -745,7 +745,7 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "body_font_object",
         array(
-            "label" => __("body_font_object", 'picostrap5'),
+            "label" => __("body_font_object", 'jovadd-lc'),
             "section" => "addcode",
             'type'     => 'textarea',
 			'description' =>'<b>Not editable</b> - Internal purpose only.'
@@ -761,7 +761,7 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "headings_font_object",
         array(
-            "label" => __("headings_font_object", 'picostrap5'),
+            "label" => __("headings_font_object", 'jovadd-lc'),
             "section" => "addcode",
             'type'     => 'textarea',
 			'description' =>'<b>Not editable</b> - Internal purpose only.'
@@ -770,7 +770,7 @@ function picostrap_theme_customize_register($wp_customize) {
     
 	// ADD A SECTION FOR EXTRAS /////////////////////////////////////////////////////////////////////////////
 	$wp_customize->add_section("extras", array(
-        "title" => __("Global Utilities", 'picostrap5'),
+        "title" => __("Global Utilities", 'jovadd-lc'),
         "priority" => 190,
     ));
 	
@@ -783,8 +783,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "disable_gutenberg",
         array(
-            "label" => __("Disable the Gutenberg Content Editor", 'picostrap5'),
-			"description" => __("Disables the Gutenberg content editor on all post types. De-enqueues its CSS styles as well.", 'picostrap5'),
+            "label" => __("Disable the Gutenberg Content Editor", 'jovadd-lc'),
+			"description" => __("Disables the Gutenberg content editor on all post types. De-enqueues its CSS styles as well.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -799,8 +799,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "disable_widgets_block_editor",
         array(
-            "label" => __("Disable the Block-based Widgets Editor", 'picostrap5'),
-			"description" => __("Disables the Block-based Widgets Editor and restores the classic widgets editor.", 'picostrap5'),
+            "label" => __("Disable the Block-based Widgets Editor", 'jovadd-lc'),
+			"description" => __("Disables the Block-based Widgets Editor and restores the classic widgets editor.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -815,8 +815,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "singlepost_disable_comments",
         array(
-            "label" => __("Disable WordPress Comments", 'picostrap5'),
-			"description" => __("Will completely disable the entire WP comments feature.", 'picostrap5'),
+            "label" => __("Disable WordPress Comments", 'jovadd-lc'),
+			"description" => __("Will completely disable the entire WP comments feature.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -831,8 +831,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "disable_xml_rpc",
         array(
-            "label" => __("Disable XML - RPC", 'picostrap5'),
-			"description" => __("Disabling XML-RPC will close one more door that a potential hacker may try to exploit to hack your website.", 'picostrap5'),
+            "label" => __("Disable XML - RPC", 'jovadd-lc'),
+			"description" => __("Disabling XML-RPC will close one more door that a potential hacker may try to exploit to hack your website.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -840,16 +840,16 @@ function picostrap_theme_customize_register($wp_customize) {
 
 	//DISABLE LIVERELOAD (no more necessary)
 	/*
-	$wp_customize->add_setting("picostrap_disable_livereload", array(
+	$wp_customize->add_setting("jovadd-lc_disable_livereload", array(
         "default" => "",
         "transport" => "refresh",
     ));
 	$wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        "picostrap_disable_livereload",
+        "jovadd-lc_disable_livereload",
         array(
-            "label" => __("Disable  SCSS Autocompile / LiveReload ", 'picostrap5'),
-			"description" => __("If you're not editing the SCSS files, you can check this option. Makes a difference for site admins only.", 'picostrap5'),
+            "label" => __("Disable  SCSS Autocompile / LiveReload ", 'jovadd-lc'),
+			"description" => __("If you're not editing the SCSS files, you can check this option. Makes a difference for site admins only.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -865,8 +865,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "enable_back_to_top",
         array(
-            "label" => __("Add a 'Back to Top' button to site", 'picostrap5'),
-			"description" => __("Very light implementation. To see the button, you will also need to Publish, exit the Customizer, and scroll down a long page", 'picostrap5'),
+            "label" => __("Add a 'Back to Top' button to site", 'jovadd-lc'),
+			"description" => __("Very light implementation. To see the button, you will also need to Publish, exit the Customizer, and scroll down a long page", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -881,8 +881,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "enable_open_menu_on_hover",
         array(
-            "label" => __("Open the main menu on hover", 'picostrap5'),
-			"description" => __("Very light implementation. To see the change, you will also need to Publish, exit the Customizer, and scroll down a long page", 'picostrap5'),
+            "label" => __("Open the main menu on hover", 'jovadd-lc'),
+			"description" => __("Very light implementation. To see the change, you will also need to Publish, exit the Customizer, and scroll down a long page", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -898,8 +898,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "enable_lightbox",
         array(
-            "label" => __("Enable Lightbox", 'picostrap5'),
-			"description" => __("Will lazily add one JS and one CSS file from cdn.jsdelivr.net before closing the BODY of the page, to let you use  <a target='_blank' href='https://github.com/biati-digital/glightbox'>gLightBox</a>: a very lightweight lightbox implementation. <br><br>The lightbox will be triggered on single posts and pages, automatically adding the <b>glightbox</b> class to each IMG in an A element.<br><br>To add the lightbox to other elements arbitrarily, add the <b>glightbox</b> class.<br><br> To prevent the lightbox on a linked image, add the <b>nolightbox</b> class.<br><br>To lightbox all images inside a DIV, add the <b>autolightbox</b> class.", 'picostrap5'),
+            "label" => __("Enable Lightbox", 'jovadd-lc'),
+			"description" => __("Will lazily add one JS and one CSS file from cdn.jsdelivr.net before closing the BODY of the page, to let you use  <a target='_blank' href='https://github.com/biati-digital/glightbox'>gLightBox</a>: a very lightweight lightbox implementation. <br><br>The lightbox will be triggered on single posts and pages, automatically adding the <b>glightbox</b> class to each IMG in an A element.<br><br>To add the lightbox to other elements arbitrarily, add the <b>glightbox</b> class.<br><br> To prevent the lightbox on a linked image, add the <b>nolightbox</b> class.<br><br>To lightbox all images inside a DIV, add the <b>autolightbox</b> class.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -914,8 +914,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "enable_tooltips",
         array(
-            "label" => __("Enable Tooltips & Popovers", 'picostrap5'),
-			"description" => __("Adds inline <a target='_blank' href='https://getbootstrap.com/docs/5.2/components/tooltips/#enable-tooltips'>two rows of JavaScript</a> to enable Boostrap 5 tooltips and popovers. Publish and exit the Customizer to see the change.", 'picostrap5'),
+            "label" => __("Enable Tooltips & Popovers", 'jovadd-lc'),
+			"description" => __("Adds inline <a target='_blank' href='https://getbootstrap.com/docs/5.2/components/tooltips/#enable-tooltips'>two rows of JavaScript</a> to enable Boostrap 5 tooltips and popovers. Publish and exit the Customizer to see the change.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -931,8 +931,8 @@ function picostrap_theme_customize_register($wp_customize) {
         $wp_customize,
         "disable_bootstrap",
         array(
-            "label" => __("Disable Bootstrap", 'picostrap5'),
-			"description" => __("Completely disables the Bootstrap CSS and JS. You'll be responsible for adding your own CSS.", 'picostrap5'),
+            "label" => __("Disable Bootstrap", 'jovadd-lc'),
+			"description" => __("Completely disables the Bootstrap CSS and JS. You'll be responsible for adding your own CSS.", 'jovadd-lc'),
             "section" => "extras", 
             'type'     => 'checkbox',
 			)
@@ -943,7 +943,7 @@ function picostrap_theme_customize_register($wp_customize) {
  
 
 /// DECLARE SCSS VARIABLES 
-function picostrap_get_scss_variables_array(){
+function jovadd-lc_get_scss_variables_array(){
     return array(
         "colors" => array( //  $variable_name => $variable_props
             '$body-bg' => array('type' => 'color', 'newgroup' => 'Base Colors'),
@@ -1199,7 +1199,7 @@ function picostrap_get_scss_variables_array(){
 add_theme_support( 'customize-selective-refresh-widgets' );
 
 //ADD CUSTOMIZATION HELPER ICONS & CONFIGURE CUSTOMIZATION LIVE PREVIEWS
-function picostrap_register_main_partials( WP_Customize_Manager $wp_customize ) {
+function jovadd-lc_register_main_partials( WP_Customize_Manager $wp_customize ) {
  
     // Abort if selective refresh is not available.
     if ( ! isset( $wp_customize->selective_refresh ) ) { return;}
@@ -1229,19 +1229,19 @@ function picostrap_register_main_partials( WP_Customize_Manager $wp_customize ) 
     ));
 	
 	//MENUS
-    //picostrap_header_navbar_expand
-	$wp_customize->selective_refresh->add_partial( 'picostrap_header_navbar_expand', array(
+    //jovadd-lc_header_navbar_expand
+	$wp_customize->selective_refresh->add_partial( 'jovadd-lc_header_navbar_expand', array(
         'selector' => '#wrapper-navbar',
-        'settings' => array( 'picostrap_header_navbar_expand' ),
+        'settings' => array( 'jovadd-lc_header_navbar_expand' ),
         'render_callback' => function() {
              return get_template_part( 'partials/header', 'navbar' ); 
         },
     ) );
 	
-    //picostrap_header_navbar_expand
-	$wp_customize->selective_refresh->add_partial( 'picostrap_header_navbar_position', array(
+    //jovadd-lc_header_navbar_expand
+	$wp_customize->selective_refresh->add_partial( 'jovadd-lc_header_navbar_position', array(
         'selector' => '#wrapper-navbar',
-        'settings' => array( 'picostrap_header_navbar_position' ),
+        'settings' => array( 'jovadd-lc_header_navbar_position' ),
         'render_callback' => function() {
              return get_template_part( 'partials/header', 'navbar' ); 
         },
@@ -1256,19 +1256,19 @@ function picostrap_register_main_partials( WP_Customize_Manager $wp_customize ) 
         },
     ) );
 
-    //picostrap_header_navbar_color_choice
-	$wp_customize->selective_refresh->add_partial( 'picostrap_header_navbar_color_choice', array(
+    //jovadd-lc_header_navbar_color_choice
+	$wp_customize->selective_refresh->add_partial( 'jovadd-lc_header_navbar_color_choice', array(
         'selector' => '#wrapper-navbar',
-        'settings' => array( 'picostrap_header_navbar_color_choice' ),
+        'settings' => array( 'jovadd-lc_header_navbar_color_choice' ),
         'render_callback' => function() {
              return get_template_part( 'partials/header', 'navbar' ); 
         },
     ) );
 
-    //picostrap_header_navbar_color_scheme_attr
-	$wp_customize->selective_refresh->add_partial( 'picostrap_header_navbar_color_scheme_attr', array(
+    //jovadd-lc_header_navbar_color_scheme_attr
+	$wp_customize->selective_refresh->add_partial( 'jovadd-lc_header_navbar_color_scheme_attr', array(
         'selector' => '#wrapper-navbar',
-        'settings' => array( 'picostrap_header_navbar_color_scheme_attr' ),
+        'settings' => array( 'jovadd-lc_header_navbar_color_scheme_attr' ),
         'render_callback' => function() {
              return get_template_part( 'partials/header', 'navbar' ); 
         },
@@ -1314,19 +1314,19 @@ function picostrap_register_main_partials( WP_Customize_Manager $wp_customize ) 
 	//footer text
 	$wp_customize->selective_refresh->add_partial( 'footer_ending_text', array(
         'selector' => 'footer.site-footer',
-        'settings' => array( 'picostrap_footer_text' ),
+        'settings' => array( 'jovadd-lc_footer_text' ),
 		'render_callback' => function() {
-             return picostrap_site_info();
+             return jovadd-lc_site_info();
         },     
     ));
 
 	/*
 	//inline css
-	$wp_customize->selective_refresh->add_partial( 'picostrap_inline_css', array(
-        'selector' => '#picostrap-inline-style',
-        'settings' => array( 'picostrap_footer_bgcolor','picostrap_menubar_bgcolor' , 'picostrap_links_color','picostrap_hover_links_color','picostrap_headings_font','picostrap_body_font'  ),
+	$wp_customize->selective_refresh->add_partial( 'jovadd-lc_inline_css', array(
+        'selector' => '#jovadd-lc-inline-style',
+        'settings' => array( 'jovadd-lc_footer_bgcolor','jovadd-lc_menubar_bgcolor' , 'jovadd-lc_links_color','jovadd-lc_hover_links_color','jovadd-lc_headings_font','jovadd-lc_body_font'  ),
 		'render_callback' => function() {
-             return picostrap_footer_add_inline_css();
+             return jovadd-lc_footer_add_inline_css();
         },
     ));
 	*/
@@ -1363,7 +1363,7 @@ function picostrap_register_main_partials( WP_Customize_Manager $wp_customize ) 
 
 	//SINGLE: sharing buttons
 	$wp_customize->selective_refresh->add_partial( 'enable_sharing_buttons', array(
-        'selector' => '.picostrap-sharing-buttons',
+        'selector' => '.jovadd-lc-sharing-buttons',
         'settings' => array( 'enable_sharing_buttons' ),
 		'render_callback' => '__return_false'    
 	));
@@ -1379,7 +1379,7 @@ function picostrap_register_main_partials( WP_Customize_Manager $wp_customize ) 
 
      
 }
-add_action( 'customize_register', 'picostrap_register_main_partials' );
+add_action( 'customize_register', 'jovadd-lc_register_main_partials' );
 
  
 //CUSTOM BACKGROUND
@@ -1400,14 +1400,14 @@ function custom_background_size( $wp_customize ) {
 
 	// Add your control box.
 	$wp_customize->add_control( 'background-image-size', array(
-		'label'      => __( 'Background Image Size','picostrap5' ),
+		'label'      => __( 'Background Image Size','jovadd-lc' ),
 		'section'    => 'background_image', 
 		'priority'   => 200,
 		'type' => 'radio',
 		'choices' => array(
-			'cover' => __( 'Cover','picostrap5' ),
-			'contain' => __( 'Contain' ,'picostrap5'),
-			'inherit' => __( 'Inherit' ,'picostrap5'),
+			'cover' => __( 'Cover','jovadd-lc' ),
+			'contain' => __( 'Contain' ,'jovadd-lc'),
+			'inherit' => __( 'Inherit' ,'jovadd-lc'),
 		)
 	) );
 }

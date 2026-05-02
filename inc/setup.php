@@ -2,7 +2,7 @@
 /**
  * Theme basic setup
  *
- * @package picostrap5
+ * @package jovadd-lc
  */
 
 // Exit if accessed directly.
@@ -13,9 +13,9 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
-add_action( 'after_setup_theme', 'picostrap_setup' );
+add_action( 'after_setup_theme', 'jovadd-lc_setup' );
 
-if ( ! function_exists( 'picostrap_setup' ) ) {
+if ( ! function_exists( 'jovadd-lc_setup' ) ) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -23,14 +23,14 @@ if ( ! function_exists( 'picostrap_setup' ) ) {
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function picostrap_setup() {
+	function jovadd-lc_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on this one, use a find and replace
-		 * to change 'picostrap5' to the name of your theme in all the template files
+		 * to change 'jovadd-lc' to the name of your theme in all the template files
 		 */
-		load_theme_textdomain( 'picostrap5', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'jovadd-lc', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -46,8 +46,8 @@ if ( ! function_exists( 'picostrap_setup' ) ) {
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'primary' => __( 'Primary Menu', 'picostrap5' ),
-				'secondary' => __( 'Secondary Menu', 'picostrap5' ),
+				'primary' => __( 'Primary Menu', 'jovadd-lc' ),
+				'secondary' => __( 'Secondary Menu', 'jovadd-lc' ),
 			)
 		);
 
@@ -98,7 +98,7 @@ if ( ! function_exists( 'picostrap_setup' ) ) {
 		add_theme_support(
 			'custom-background',
 			apply_filters(
-				'picostrap_custom_background_args',
+				'jovadd-lc_custom_background_args',
 				array(
 					'default-color' => 'ffffff',
 					'default-image' => '',
@@ -114,7 +114,7 @@ if ( ! function_exists( 'picostrap_setup' ) ) {
 		add_theme_support( 'responsive-embeds' );
 
 		// Check and setup theme default settings.
-		picostrap_setup_theme_default_settings();
+		jovadd-lc_setup_theme_default_settings();
 
 	}
 }
@@ -125,9 +125,9 @@ add_filter("excerpt_length",function($in){
 
 
 
-add_filter( 'excerpt_more', 'picostrap_custom_excerpt_more' );
+add_filter( 'excerpt_more', 'jovadd-lc_custom_excerpt_more' );
 
-if ( ! function_exists( 'picostrap_custom_excerpt_more' ) ) {
+if ( ! function_exists( 'jovadd-lc_custom_excerpt_more' ) ) {
 	/**
 	 * Removes the ... from the excerpt read more link
 	 *
@@ -135,7 +135,7 @@ if ( ! function_exists( 'picostrap_custom_excerpt_more' ) ) {
 	 *
 	 * @return string
 	 */
-	function picostrap_custom_excerpt_more( $more ) {
+	function jovadd-lc_custom_excerpt_more( $more ) {
 		if ( ! is_admin()  OR ( isset($_POST['action']) && $_POST['action'] == 'lc_process_dynamic_templating_shortcode') ) {
 			$more = '';
 		}
@@ -143,9 +143,9 @@ if ( ! function_exists( 'picostrap_custom_excerpt_more' ) ) {
 	}
 }
 
-add_filter( 'wp_trim_excerpt', 'picostrap_all_excerpts_get_more_link' );
+add_filter( 'wp_trim_excerpt', 'jovadd-lc_all_excerpts_get_more_link' );
 
-if ( ! function_exists( 'picostrap_all_excerpts_get_more_link' ) ) {
+if ( ! function_exists( 'jovadd-lc_all_excerpts_get_more_link' ) ) {
 	/**
 	 * Adds a custom read more link to all excerpts, manually or automatically generated
 	 *
@@ -153,16 +153,16 @@ if ( ! function_exists( 'picostrap_all_excerpts_get_more_link' ) ) {
 	 *
 	 * @return string
 	 */
-	function picostrap_all_excerpts_get_more_link( $post_excerpt ) {
+	function jovadd-lc_all_excerpts_get_more_link( $post_excerpt ) {
         global  $lc_rendered_dynamic_template_id;
         
         //exclude LC dynamic templates
         if (isset($lc_rendered_dynamic_template_id)) return $post_excerpt;
 
 		if ( ! is_admin() OR ( isset($_POST['action']) && $_POST['action'] == 'lc_process_dynamic_templating_shortcode') ) {
-			$post_excerpt = $post_excerpt . '...<p class="text-end"><a class="btn btn-outline-secondary picostrap-read-more-link mt-3" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __(
+			$post_excerpt = $post_excerpt . '...<p class="text-end"><a class="btn btn-outline-secondary jovadd-lc-read-more-link mt-3" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __(
 				'Read More...',
-				'picostrap5'
+				'jovadd-lc'
 			) . '</a></p>';
 		}
 		return $post_excerpt;
@@ -194,8 +194,8 @@ function bootstrap_wrap_oembed( $html ){
   add_filter( 'embed_oembed_html','bootstrap_wrap_oembed',10,1);
 
 // Make the core [video] shortcode responsive with Bootstrap 5.3 ratio
-add_filter( 'wp_video_shortcode', 'picostrap_bs_ratio_for_wp_video', 10, 5 );
-function picostrap_bs_ratio_for_wp_video( $output, $atts, $video, $post_id, $library ) {
+add_filter( 'wp_video_shortcode', 'jovadd-lc_bs_ratio_for_wp_video', 10, 5 );
+function jovadd-lc_bs_ratio_for_wp_video( $output, $atts, $video, $post_id, $library ) {
 
     // 1) Read width/height from shortcode attributes (fallback to 16:9)
     $w = isset( $atts['width'] )  ? (int) $atts['width']  : 16;
@@ -227,4 +227,4 @@ add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
 
 
 //ENABLE SOURCEMAP
-add_filter('picostrap_enable_sourcemap_in_css', '__return_true');
+add_filter('jovadd-lc_enable_sourcemap_in_css', '__return_true');

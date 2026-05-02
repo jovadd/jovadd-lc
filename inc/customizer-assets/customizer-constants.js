@@ -16,8 +16,8 @@ const ps_font_combinations_select = `
 
 <div id="cs-font-combi">
   <h2>Font Combinations</h2>
-  <span id="_customize-description-picostrap_font_combinations" class="description customize-control-description">Check out <a target="_blank" href="http://fontpair.co/all">FontPair</a> or <a target="_blank" href="https://femmebot.github.io/google-type/">Google Type</a> for more inspiration. </span>
-  <select id="_ps_font_combinations" aria-describedby="_customize-description-picostrap_font_combinations" data-customize-setting-link="picostrap_font_combinations">
+  <span id="_customize-description-jovadd-lc_font_combinations" class="description customize-control-description">Check out <a target="_blank" href="http://fontpair.co/all">FontPair</a> or <a target="_blank" href="https://femmebot.github.io/google-type/">Google Type</a> for more inspiration. </span>
+  <select id="_ps_font_combinations" aria-describedby="_customize-description-jovadd-lc_font_combinations" data-customize-setting-link="jovadd-lc_font_combinations">
     <option value="" selected="selected">Choose...</option>
     <optgroup label="Variable Fonts">
         <option value="Alegreya and Noto Sans SC">Alegreya and Noto Sans SC</option>

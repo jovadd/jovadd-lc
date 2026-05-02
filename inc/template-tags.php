@@ -2,7 +2,7 @@
 /**
  * Declare some custom template tags
  *
- * @package picostrap5
+ * @package jovadd-lc
  */
 
 // Exit if accessed directly.
@@ -10,13 +10,13 @@ defined( 'ABSPATH' ) || exit;
 
 
 //FOOTER TEXT CUSTOMIZATION
-if(!function_exists('picostrap_site_info')):
-	function picostrap_site_info(){
-		$footer_text_setting = get_theme_mod("picostrap_footer_text");
+if(!function_exists('jovadd-lc_site_info')):
+	function jovadd-lc_site_info(){
+		$footer_text_setting = get_theme_mod("jovadd-lc_footer_text");
 		?>
 			<div class="site-info small">
 				<?php if (strlen($footer_text_setting) > 0) echo $footer_text_setting; ?>
-				<?php if (current_user_can("administrator") && strlen($footer_text_setting) <= 0) _e( 'You can edit this footer text using the WordPress Customizer.', 'picostrap5' ); ?>
+				<?php if (current_user_can("administrator") && strlen($footer_text_setting) <= 0) _e( 'You can edit this footer text using the WordPress Customizer.', 'jovadd-lc' ); ?>
 			</div>
 						
 		<?php
@@ -24,16 +24,16 @@ if(!function_exists('picostrap_site_info')):
 endif;
 
 ///SHARING BUTTONS ////
-if(!function_exists('picostrap_the_sharing_buttons')):
-	function picostrap_the_sharing_buttons(){
+if(!function_exists('jovadd-lc_the_sharing_buttons')):
+	function jovadd-lc_the_sharing_buttons(){
 
 		global $post;
 		$url_to_share=esc_attr(get_permalink($post->ID));
 		?>
-		<div class="picostrap-sharing-buttons mt-4 mb-5" >
+		<div class="jovadd-lc-sharing-buttons mt-4 mb-5" >
 		
 			<!-- Basic Share Links -->
-			<span class="d-block mb-3 h4"><?php _e( 'Share this post', 'picostrap5' ); ?>: &nbsp; </span>
+			<span class="d-block mb-3 h4"><?php _e( 'Share this post', 'jovadd-lc' ); ?>: &nbsp; </span>
 		
 			<!-- Facebook (url) -->
 			<a class="btn btn-outline-dark btn-sm btn-facebook" href="https://www.facebook.com/sharer.php?u=<?php echo $url_to_share ?>" target="_blank" rel="nofollow" title="Share on Facebook">

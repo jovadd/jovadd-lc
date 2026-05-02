@@ -51,7 +51,7 @@ html {
 //
 // if customizing menubar, set header height variable accordingly in the code block below
 
-//body.picostrap_header_navbar_position_fixed-top section[id],  //optional, this selector is only for FireFox < 121
+//body.jovadd-lc_header_navbar_position_fixed-top section[id],  //optional, this selector is only for FireFox < 121
 body:has(nav.fixed-top) *[id] {	
     scroll-margin-top: calc( 28px + var(--header-height));
 }
@@ -61,25 +61,25 @@ body:has(nav.fixed-top) *[id] {
 // FIX SVG LOGO IN HEADER
 .custom-logo-link img[src$='.svg'] {width:100%}
 
-// IMPORTANT NOTE: if body has class picostrap_header_navbar_position_xxx or picostrap_header_navbar_color_choice_xxx then we are not using a custom LC-powered header
+// IMPORTANT NOTE: if body has class jovadd-lc_header_navbar_position_xxx or jovadd-lc_header_navbar_color_choice_xxx then we are not using a custom LC-powered header
 
 // WHEN using built-in header, and HEADER NAVBAR IS set to FIXED TOP, unless it's transparent, 
 // MOVE CONTENT DOWN so it's not hidden by the menubar 
-body.picostrap_header_navbar_position_fixed-top:not(.picostrap_header_navbar_color_choice_bg-transparent) {
+body.jovadd-lc_header_navbar_position_fixed-top:not(.jovadd-lc_header_navbar_color_choice_bg-transparent) {
     padding-top: var(--header-height); 
 }
 
 //...Exception for when fixed header is transparent, and viewing Woocommerce templates
-body.picostrap_header_navbar_position_fixed-top.picostrap_header_navbar_color_choice_bg-transparent.woocommerce {
+body.jovadd-lc_header_navbar_position_fixed-top.jovadd-lc_header_navbar_color_choice_bg-transparent.woocommerce {
     padding-top: var(--header-height);   
 }
 
 //...Exception for when fixed header is transparent, and using topbar, move nav bar down a bit
-body.picostrap_topbar_enabled.picostrap_header_navbar_position_fixed-top.picostrap_header_navbar_color_choice_bg-transparent #wrapper-navbar nav.navbar{
+body.jovadd-lc_topbar_enabled.jovadd-lc_header_navbar_position_fixed-top.jovadd-lc_header_navbar_color_choice_bg-transparent #wrapper-navbar nav.navbar{
     top:36px;
 }
 //...Exception for when fixed header is transparent, and using topbar, make topbar fixed
-body.picostrap_topbar_enabled.picostrap_header_navbar_position_fixed-top.picostrap_header_navbar_color_choice_bg-transparent #wrapper-topbar {
+body.jovadd-lc_topbar_enabled.jovadd-lc_header_navbar_position_fixed-top.jovadd-lc_header_navbar_color_choice_bg-transparent #wrapper-topbar {
     position: fixed;
     z-index: 999999;
     width:100%;

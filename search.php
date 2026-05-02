@@ -13,7 +13,7 @@ get_header();
     <h1><?php 
         printf(
             /* translators: %s: query term */
-            esc_html__( 'Search Results for: %s', 'picostrap5' ),
+            esc_html__( 'Search Results for: %s', 'jovadd-lc' ),
             '<span class="text-light">"' . get_search_query() . '"</span>'
         );
         ?></h1>
@@ -67,7 +67,7 @@ get_header();
 
     <div class="row">
       <div class="col lead text-center w-100">
-        <div class="d-inline-block"><?php picostrap_pagination() ?></div>
+        <div class="d-inline-block"><?php jovadd-lc_pagination() ?></div>
       </div><!-- /col -->
     </div <!-- /row -->
   </div>

@@ -41,7 +41,7 @@ if (have_posts()):
                 if (!get_theme_mod("singlepost_disable_entry_cats") &&  has_category() ) {
                         ?>
                         <div class="entry-categories">
-                            <span class="screen-reader-text"><?php _e( 'Categories', 'picostrap5' ); ?></span>
+                            <span class="screen-reader-text"><?php _e( 'Categories', 'jovadd-lc' ); ?></span>
                             <div class="entry-categories-inner">
                                 <?php the_category( ' ' ); ?>
                             </div><!-- .entry-categories-inner -->
@@ -62,7 +62,7 @@ if (have_posts()):
                             <?php endif; ?>
 
                             <?php if (!get_theme_mod("singlepost_disable_author") ): ?>
-                                <span class="post-author"> <?php _e( 'by', 'picostrap5' ) ?> <?php the_author(); ?></span>
+                                <span class="post-author"> <?php _e( 'by', 'jovadd-lc' ) ?> <?php the_author(); ?></span>
                             <?php endif; ?>
                         </p>
                     </div> 
@@ -76,9 +76,9 @@ if (have_posts()):
                 
                 the_content();
                 
-                if( get_theme_mod("enable_sharing_buttons")) picostrap_the_sharing_buttons();
+                if( get_theme_mod("enable_sharing_buttons")) jovadd-lc_the_sharing_buttons();
                 
-                edit_post_link( __( 'Edit this post', 'picostrap5' ), '<p class="text-end">', '</p>' );
+                edit_post_link( __( 'Edit this post', 'jovadd-lc' ), '<p class="text-end">', '</p>' );
                 
                 // If comments are open or we have at least one comment, load up the comment template.
                 if (!get_theme_mod("singlepost_disable_comments")) if ( comments_open() || get_comments_number() ) {
@@ -94,7 +94,7 @@ if (have_posts()):
 <?php
     endwhile;
  else :
-     _e( 'Sorry, no posts matched your criteria.', 'picostrap5' );
+     _e( 'Sorry, no posts matched your criteria.', 'jovadd-lc' );
  endif;
  ?>
 

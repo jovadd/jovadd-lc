@@ -4,7 +4,7 @@
  * Allow LC - powered sites to be rendered perfectly, also if LC plugin is deactivated.
  * Just remove some WP default content filtering on LC-pages
  *
- * @package picostrap5
+ * @package jovadd-lc
  */
 
 // Exit if accessed directly.

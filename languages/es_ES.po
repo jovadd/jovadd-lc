@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: picostrap5\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/picostrap5\n"
+"Project-Id-Version: jovadd-lc\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/jovadd-lc\n"
 "POT-Creation-Date: 2022-12-19T14:45:13+00:00\n"
 "PO-Revision-Date: 2022-12-19 15:48+0100\n"
 "Last-Translator: \n"
@@ -23,13 +23,13 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
 #. Theme Name of the theme
-msgid "picostrap5"
-msgstr "picostrap5"
+msgid "jovadd-lc"
+msgstr "jovadd-lc"
 
 #. Theme URI of the theme
 #. Author URI of the theme
-msgid "https://picostrap.com"
-msgstr "https://picostrap.com"
+msgid "https://jovadd-lc.com"
+msgstr "https://jovadd-lc.com"
 
 #. Description of the theme
 msgid ""
@@ -44,8 +44,8 @@ msgstr ""
 "nrHFh_08w78\">vea el video de introducción</a> para comenzar."
 
 #. Author of the theme
-msgid "The picostrap Team"
-msgstr "El equipo de picostrap"
+msgid "The jovadd-lc Team"
+msgstr "El equipo de jovadd-lc"
 
 #: 404.php:78
 msgid "Page not found"

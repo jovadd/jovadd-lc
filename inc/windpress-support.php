@@ -4,7 +4,7 @@
 // https://wind.press/
 // A great solution to add TailWind CSS
 
-function pico_scanner_picostrap_provider(): array
+function pico_scanner_jovadd-lc_provider(): array
 {
     // Any files with this extension will be scanned
     $file_extensions = [
@@ -13,21 +13,21 @@ function pico_scanner_picostrap_provider(): array
         'html',
     ];
 
-    // Exclude the picostrap theme's internal directories
+    // Exclude the jovadd-lc theme's internal directories
     $parentNotPath = [
-        'picostrap5/css-output',
-        'picostrap5/inc',
-        'picostrap5/js',
-        'picostrap5/languages',
-        'picostrap5/sass',
+        'jovadd-lc/css-output',
+        'jovadd-lc/inc',
+        'jovadd-lc/js',
+        'jovadd-lc/languages',
+        'jovadd-lc/sass',
     ];
 
     $contents = [];
 
     // The current active theme
 
-    // if the theme is not Picostrap or its' child, early return
-    if (get_template() != 'picostrap5') {
+    // if the theme is not Jovadd LC or its' child, early return
+    if (get_template() != 'jovadd-lc') {
         return $contents;
     }
 
@@ -64,20 +64,20 @@ function pico_scanner_picostrap_provider(): array
  * @param array $providers The collection of providers that will be used to scan the design payload
  * @return array
  */
-function pico_register_picostrap_provider(array $providers): array
+function pico_register_jovadd-lc_provider(array $providers): array
 {
     $providers[] = [
-        'id' => 'picostrap',
-        'name' => 'Picostrap Theme',
-        'description' => 'Scans the Picostrap theme & child theme',
-        'callback' => 'pico_scanner_picostrap_provider', // The function that will be called to get the data
+        'id' => 'jovadd-lc',
+        'name' => 'Jovadd LC Theme',
+        'description' => 'Scans the Jovadd LC theme & child theme',
+        'callback' => 'pico_scanner_jovadd-lc_provider', // The function that will be called to get the data
         'enabled' => \WindPress\WindPress\Utils\Config::get(sprintf(
             'integration.%s.enabled',
-            'picostrap' // The id of this custom provider
+            'jovadd-lc' // The id of this custom provider
         ), true),
     ];
 
     return $providers;
 }
 
-add_filter('f!windpress/core/cache:compile.providers', 'pico_register_picostrap_provider');
+add_filter('f!windpress/core/cache:compile.providers', 'pico_register_jovadd-lc_provider');

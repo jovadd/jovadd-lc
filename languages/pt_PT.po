@@ -1,9 +1,9 @@
-# Copyright (C) 2022 The picostrap Team
+# Copyright (C) 2022 The jovadd-lc Team
 # This file is distributed under the GPL-2.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: picostrap5 2.0.1\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/picostrap5\n"
+"Project-Id-Version: jovadd-lc 2.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/jovadd-lc\n"
 "POT-Creation-Date: 2022-12-19T14:45:13+00:00\n"
 "PO-Revision-Date: 2022-12-20 19:21+0100\n"
 "Last-Translator: \n"
@@ -14,18 +14,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.2.2\n"
-"X-Domain: picostrap5\n"
+"X-Domain: jovadd-lc\n"
 
 #. Theme Name of the theme
 #, fuzzy
-msgid "picostrap5"
-msgstr "picostrap5"
+msgid "jovadd-lc"
+msgstr "jovadd-lc"
 
 #. Theme URI of the theme
 #. Author URI of the theme
 #, fuzzy
-msgid "https://picostrap.com"
-msgstr "https://picostrap.com"
+msgid "https://jovadd-lc.com"
+msgstr "https://jovadd-lc.com"
 
 #. Description of the theme
 #, fuzzy
@@ -42,8 +42,8 @@ msgstr ""
 
 #. Author of the theme
 #, fuzzy
-msgid "The picostrap Team"
-msgstr "A Equipe picostrap"
+msgid "The jovadd-lc Team"
+msgstr "A Equipe jovadd-lc"
 
 #: 404.php:78
 msgid "Page not found"
